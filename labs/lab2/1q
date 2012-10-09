@@ -1,0 +1,32 @@
+disp(sprintf('\n\ne:\n'))
+
+% need 5 significant digits
+error_bound=.5E-5;
+
+% True value : exp(1), x= 1
+xtrue=exp(1);
+x=1;
+
+disp(sprintf('k \t x_n \t\t Relerr'));
+
+% Use a Taylor series approximation for exp(x) to evaluate exp(1). 
+
+
+n=0;
+xn=1;
+Relerr=abs(xtrue-xn)/xtrue;
+disp(sprintf('%d \t %0.11f \t %0.5e',n,xn,Relerr)); 
+
+%Start a stopwatch timer.
+tic
+% Keep increasing the number of terms in the Taylor approximation till 5
+% significant digits of accuracy is obtained.
+while Relerr>error_bound
+  n=n+1;
+  xn=xn+x^n/factorial(n);  
+  Relerr=abs(xtrue-xn)/xtrue;
+end
+disp(sprintf('%d \t %0.11f \t %0.5e',n,xn,Relerr)); 
+%Read the stopwatch timer
+toc
+
