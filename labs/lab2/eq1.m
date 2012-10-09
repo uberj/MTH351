@@ -1,6 +1,3 @@
-%% Equations
-%% log((1+x)/(1-x)) = (2) * (sum(k=1 to k=n (x^(2*k + 1)/(2*k - 1))))
-
 function y = eq1(x, n)
 % The equation for the first problem part 1
 %
