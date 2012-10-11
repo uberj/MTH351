@@ -9,4 +9,4 @@ function y = eq1(x, n)
         k = k + 1;
         y = y + power(x, k)/k;
     end
-    y = y *-1.0
+    y = y * -1.0;
