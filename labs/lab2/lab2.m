@@ -1,3 +1,5 @@
+%% Lab 2
+
 %% Problem 1
 %%
 print('Problem 1.')
@@ -47,10 +49,9 @@ disp(sprintf('Calculated at %d (terms) iterations: %0.11f', k, xcalc));
 % exponent means the second equation has a faster rate of convergence.
 
 
+%% Problem 2.
 %%
-% 2.
 disp(sprintf('\n'));
-print('Problem 2.')
 disp(sprintf('\n'));
 
 %%
@@ -87,6 +88,7 @@ disp(sprintf('\n'));
 %      x=10^(-i);
 %      disp(sprintf('%g \t %0.10f \t %0.10f', x, func(x), func_fixed(x)));
 %    end
+%
 %function y = eq1(x, n)
 %    k = 0;
 %    y = 0;

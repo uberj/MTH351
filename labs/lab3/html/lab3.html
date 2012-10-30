@@ -1,0 +1,312 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>lab3</title><meta name="generator" content="MATLAB 7.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-10-25"><meta name="DC.source" content="lab3.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Lab 3</a></li><li><a href="#2">Problem 1</a></li><li><a href="#6">Problem 2</a></li><li><a href="#11">Problem 3</a></li><li><a href="#15">Problem 4</a></li></ul></div><h2>Lab 3<a name="1"></a></h2><pre class="codeinput">lib = make_lib();
+</pre><h2>Problem 1<a name="2"></a></h2><pre class="codeinput">disp(sprintf(<span class="string">'Problem 1 Table:'</span>));
+disp(sprintf(<span class="string">'Initial Interval \t Approximation \t \t Error \t\t Iterations'</span>));
+
+x0 = 0.0;
+x1 = 3.0;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, <span class="keyword">...</span>
+                lib.the_root - root, it_count));
+
+x0 = 0.5;
+x1 = 2.0;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, <span class="keyword">...</span>
+                lib.the_root - root, it_count));
+
+x0 = 0.9;
+x1 = 1.2;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root,<span class="keyword">...</span>
+                lib.the_root - root, it_count));
+</pre><pre class="codeoutput">Problem 1 Table:
+Initial Interval 	 Approximation 	 	 Error 		 Iterations
+0 to 3 			 0.9999990463 		 0.0000009537	 19
+0.5 to 2 		 1.0000009537 		 -0.0000009537	 18
+0.9 to 1.2 		 0.9999984741 		 0.0000015259	 15
+</pre><p>a. The second interval needs exactly one fewer iterations because bisect, by definition, halves the interval for every iteration. The second interval has been effectively halved compared to the first interval so it starts one iteration ahead of the first.</p><pre class="codeinput">disp(sprintf(<span class="string">'\n'</span>));
+disp(sprintf(<span class="string">'Problem 1 Table for part a:'</span>));
+x0 = 1;
+x1 = 2;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, <span class="keyword">...</span>
+                lib.the_root - root, it_count));
+
+x0 = 0.5;
+x1 = 1.5;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, lib.the_root - root, it_count));
+</pre><pre class="codeoutput">
+
+Problem 1 Table for part a:
+1 to 2 			 1.0000038147 		 -0.0000038147	 17
+0.5 to 1.5 		 1.0000038147 		 -0.0000038147	 17
+</pre><p>b. No it doesn't help. Bisection chooses either the left or the right side of the interval so when the root is on the end of an interval it will just choose whichever side the root is on. This doesn't help speed anything up.</p><h2>Problem 2<a name="6"></a></h2><pre class="codeinput">disp(sprintf(<span class="string">'\n'</span>));
+disp(sprintf(<span class="string">'Problem 2 Table:'</span>));
+disp(sprintf(<span class="string">'Initial Value \t Approximation \t \t Error \t\t Iterations'</span>));
+x0 = -100;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+
+x0 = 0;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+
+x0 = 0.9;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+
+x0 = 0.99;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+
+x0 = 1.1;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+
+x0 = 1.4;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+
+x0 = 1000000;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf(<span class="string">'%g \t\t %0.10f \t\t %0.10f\t\t %g'</span>, x0,root, lib.the_root - root, it_count));
+</pre><pre class="codeoutput">
+
+Problem 2 Table:
+Initial Value 	 Approximation 	 	 Error 		 Iterations
+-100 		 1.0000000000 		 0.0000000000		 28
+0 		 1.0000000000 		 0.0000000000		 2
+0.9 		 1.0000000000 		 -0.0000000000		 4
+0.99 		 1.0000000000 		 -0.0000000000		 3
+1.1 		 1.0000000000 		 -0.0000000000		 4
+1.4 		 1.0000000000 		 -0.0000000000		 6
+1e+06 		 1.0000000000 		 -0.0000000000		 67
+</pre><p>a. Newton is much better at finding the root when the initial guess is close to the root.</p><p>b. The accuracy of the estimation surpases the required accuracy because on the last iteration Newton makes the error very small very fast, surpassing the required accuracy. Newton converges to the root at a quadratic rate (x^2), so ending with the accuracy at 10^-12 rather than 10^-6 makes sense: i.e. (10^-6)^2 == (10^-12)</p><p>c. You can calculate the number of iterations by observing:    (1/2)^n * 1,000,000 &lt;= 1.3x10^-12 Solving for n will give you the number of iterations. In this case n comes out to be 60. Newton takes 67 iterations, so in this case bisection is better.</p><h2>Problem 3<a name="11"></a></h2><pre class="codeinput">disp(sprintf(<span class="string">'\n'</span>));
+disp(sprintf(<span class="string">'Problem 3 Table:'</span>));
+disp(sprintf(<span class="string">'Initial Interval \t Approximation \t \t Error \t\t Iterations'</span>));
+x0 = 0.0;
+x1 = 3.0;
+[it_count, root, xn] = secant(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, lib.the_root - root, it_count));
+
+x0 = 0.5;
+x1 = 2.0;
+[it_count, root, xn] = secant(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, lib.the_root - root, it_count));
+
+x0 = 0.9;
+x1 = 1.2;
+[it_count, root, xn] = secant(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf(<span class="string">'%g to %g \t\t %0.10f \t\t %0.10f\t %g'</span>, x0, x1, root, lib.the_root - root, it_count));
+</pre><pre class="codeoutput">
+
+Problem 3 Table:
+Initial Interval 	 Approximation 	 	 Error 		 Iterations
+0 to 3 			 1.0000000000 		 -0.0000000000	 6
+0.5 to 2 		 1.0000000000 		 0.0000000000	 10
+0.9 to 1.2 		 1.0000000000 		 -0.0000000000	 6
+</pre><p>a. When the interval is close to the root secant is better than bisection (by 11 iterations) and worse than Newton (by 4 iterations).</p><p>b. The initial size of the interval doesn't effect secant as much as it does bisection. Secant is very simliar to Newton; secant uses derivative information. It accelerates toward the root super-linearly so will make up for a large initiall interval very quickly.</p><h2>Problem 4<a name="15"></a></h2><p>The errors in the roots start to become large after roots function tries to evaluate the roots higher than 7. This is happens because the polynomial evaluation a the higher roots yeilds very large numbers and as the approximate root get's close to the actual root you start to loose accuracy in your calculations.</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.13<br></p></div><!--
+##### SOURCE BEGIN #####
+%% Lab 3
+
+lib = make_lib();
+
+%% Problem 1
+%%
+disp(sprintf('Problem 1 Table:'));
+disp(sprintf('Initial Interval \t Approximation \t \t Error \t\t Iterations'));
+
+x0 = 0.0;
+x1 = 3.0;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, ...
+                lib.the_root - root, it_count));
+
+x0 = 0.5;
+x1 = 2.0;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, ...
+                lib.the_root - root, it_count));
+
+x0 = 0.9;
+x1 = 1.2;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t %0.10f \t\t %0.10f\t %g', x0, x1, root,...
+                lib.the_root - root, it_count));
+
+%%
+% a. The second interval needs exactly one fewer iterations because 
+% bisect, by definition, halves the interval for every iteration. The
+% second interval has been effectively halved compared to the
+% first interval so it starts one iteration ahead of the first.
+
+disp(sprintf('\n'));
+disp(sprintf('Problem 1 Table for part a:'));
+x0 = 1;
+x1 = 2;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, ...
+                lib.the_root - root, it_count));
+
+x0 = 0.5;
+x1 = 1.5;
+[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, lib.the_root - root, it_count));
+
+%%
+% b. No it doesn't help. Bisection chooses either the left or the right side of the interval so when
+% the root is on the end of an interval it will just choose whichever side the root is on. This
+% doesn't help speed anything up.
+
+%% Problem 2
+%%
+disp(sprintf('\n'));
+disp(sprintf('Problem 2 Table:'));
+disp(sprintf('Initial Value \t Approximation \t \t Error \t\t Iterations'));
+x0 = -100;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+x0 = 0;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+x0 = 0.9;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+x0 = 0.99;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+x0 = 1.1;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+x0 = 1.4;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+x0 = 1000000;
+[it_count, root, xn] = newton(lib.f, lib.fp, x0, lib.accuracy, 100);
+disp(sprintf('%g \t\t %0.10f \t\t %0.10f\t\t %g', x0,root, lib.the_root - root, it_count));
+
+%%
+% a. Newton is much better at finding the root when the initial guess is close to the root.
+
+%%
+% b. The accuracy of the estimation surpases the required accuracy because on the last iteration
+% Newton makes the error very small very fast, surpassing the required accuracy. Newton converges to the root
+% at a quadratic rate (x^2), so ending with the accuracy at 10^-12 rather than 10^-6 makes sense: i.e.
+% (10^-6)^2 == (10^-12)
+
+%%
+% c. You can calculate the number of iterations by observing:
+%    (1/2)^n * 1,000,000 <= 1.3x10^-12
+% Solving for n will give you the number of iterations. In this case n comes out to be 60. Newton
+% takes 67 iterations, so in this case bisection is better.
+
+
+%% Problem 3
+%%
+disp(sprintf('\n'));
+disp(sprintf('Problem 3 Table:'));
+disp(sprintf('Initial Interval \t Approximation \t \t Error \t\t Iterations'));
+x0 = 0.0;
+x1 = 3.0;
+[it_count, root, xn] = secant(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, lib.the_root - root, it_count));
+
+x0 = 0.5;
+x1 = 2.0;
+[it_count, root, xn] = secant(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, lib.the_root - root, it_count));
+
+x0 = 0.9;
+x1 = 1.2;
+[it_count, root, xn] = secant(lib.f,x0,x1,lib.accuracy,100);
+disp(sprintf('%g to %g \t\t %0.10f \t\t %0.10f\t %g', x0, x1, root, lib.the_root - root, it_count));
+
+%%
+% a. When the interval is close to the root secant is better than bisection (by 11 iterations) and
+% worse than Newton (by 4 iterations).
+
+%%
+% b. The initial size of the interval doesn't effect secant as much as it does bisection. Secant is
+% very simliar to Newton; secant uses derivative information. It accelerates toward the root
+% super-linearly so will make up for a large initiall interval very quickly.
+
+%% Problem 4
+% The errors in the roots start to become large after roots function tries to evaluate the roots
+% higher than 7. This is happens because the polynomial evaluation a the higher roots yeilds very
+% large numbers and as the approximate root get's close to the actual root you start to loose
+% accuracy in your calculations.
+
+##### SOURCE END #####
+--></body></html>
