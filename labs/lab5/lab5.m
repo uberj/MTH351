@@ -103,8 +103,9 @@ end
 
 %%
 % b.1
-% f is nearly a degree 2 polynomail on each interval so simpson does
-% a really good job of aproximating it.
+% f is nearly a degree 2 polynomial on each interval so Simpson does
+% a really good job of approximating it. It seems that only after n
+% >=8 does simpson get more accurate results than trapizoidal.
 
 
 %%
@@ -123,8 +124,9 @@ end
 %%
 % b.2
 % The function '1/(1 + x^2)' is nearly linear on the interval [0, 4]
-% and so simpson does a pretty good job at approximating it, but it's
-% not much better than Trap.
+% and so simpson does a very good job at approximating it and is
+% more accurate compared to Trapizoidal for all calculated values of
+% n.
 
 %%
 % a.3 '1/(2 + sin(x))'
@@ -166,7 +168,13 @@ end
 % the function much better than Trapizoidal did.
 
 %% Problem 3
-% TODO
+% Just by looking at the generated table for the first integral, you
+% can see that Simpson's Rule achieves ten digits of accuracy
+% somewhere between n = 128 and n = 265. This suggests that the
+% asymtotic error formula is correct. Similarly, the error shown in
+% the table for the second integral is between twelve digits of
+% accuracy between n = 256 and n = 515. This also agrees with the
+% asymtotic error formula.
 
 %% Problem 4
 % Gaussian Quadrature (GQ)
@@ -190,7 +198,8 @@ end
 % b.1
 % GQ does a very good job at approximating this function but both
 % Simpson and Trapizoidal rules also do a very good job. Simpson and
-% Trapizoidal are cheaper to calculate.
+% Trapizoidal are cheaper to calculate. If you have to generate the GQ
+% weights from scratch.
 
 
 %%
@@ -246,4 +255,5 @@ end
 %%
 % b.4
 % GQ approximates this function the best out of Trapizoidal and
+% Simpson. The GQ reduces it's error better than Trapazoidal and
 % Simpson.
