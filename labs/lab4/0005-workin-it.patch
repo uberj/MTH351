@@ -1,0 +1,169 @@
+From a69c8299f857ab958fcb8a7d8a619fe462b87f24 Mon Sep 17 00:00:00 2001
+From: uberj <uberj@onid.orst.edu>
+Date: Wed, 10 Oct 2012 19:43:20 -0700
+Subject: [PATCH 05/12] workin it.
+
+---
+ labs/lab2/do_table.m   |  8 ++++++++
+ labs/lab2/eq1.m        |  2 +-
+ labs/lab2/eq2.m        | 11 ++++-------
+ labs/lab2/eq2a.m       |  2 ++
+ labs/lab2/eq2a_fixed.m |  2 ++
+ labs/lab2/eq2b.m       |  2 ++
+ labs/lab2/lab2_p1.m    | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ labs/lab2/lab2_p2.m    | 18 ++++++++++++++++++
+ 8 files changed, 82 insertions(+), 8 deletions(-)
+ create mode 100644 labs/lab2/do_table.m
+ create mode 100644 labs/lab2/eq2a.m
+ create mode 100644 labs/lab2/eq2a_fixed.m
+ create mode 100644 labs/lab2/eq2b.m
+ create mode 100644 labs/lab2/lab2_p1.m
+ create mode 100644 labs/lab2/lab2_p2.m
+
+diff --git a/labs/lab2/do_table.m b/labs/lab2/do_table.m
+new file mode 100644
+index 0000000..fae8164
+--- /dev/null
++++ b/labs/lab2/do_table.m
+@@ -0,0 +1,8 @@
++function y = do_table(func, func_fixed)
++    disp(sprintf('Table:'));
++    disp(sprintf('x \t f(x) \t \t (fixed) f(x)'));
++    iterations = 20;
++    for i=1:iterations,
++      x=10^(-i);
++      disp(sprintf('%g \t %0.10f \t %0.10f', x, func(x), func_fixed(x)));
++    end
+diff --git a/labs/lab2/eq1.m b/labs/lab2/eq1.m
+index d684a17..e7eab65 100644
+--- a/labs/lab2/eq1.m
++++ b/labs/lab2/eq1.m
+@@ -9,4 +9,4 @@ function y = eq1(x, n)
+         k = k + 1;
+         y = y + power(x, k)/k;
+     end
+-    y = y *-1.0
++    y = y * -1.0;
+diff --git a/labs/lab2/eq2.m b/labs/lab2/eq2.m
+index 737d02e..b0663da 100644
+--- a/labs/lab2/eq2.m
++++ b/labs/lab2/eq2.m
+@@ -3,12 +3,9 @@ function y = eq2(x, n)
+ %
+ % log((1+x)/(1-x)) = (2) * (sum(k=1 to k=n (x^(2*k + 1)/(2*k - 1))))
+ 
+-    k = 0;
+     y = double(0);
+-    while k < n
+-        k = k + 1;
+-        % (x^(2*k + 1)/(2*k - 1))
+-        y1 = power(x, ((2 * k) + 1))/((2 * k) - 1);
+-        y = y + power(x, ((2 * k) + 1))/((2 * k) - 1);
++    for k=1:n,;
++        % (x^(2*k - 1)/(2*k - 1))
++        y = y + (x ^ ((2 * k) - 1))/((2 * k) - 1);
+     end
+-    y = y * (2)
++    y = y * (2);
+diff --git a/labs/lab2/eq2a.m b/labs/lab2/eq2a.m
+new file mode 100644
+index 0000000..0b79914
+--- /dev/null
++++ b/labs/lab2/eq2a.m
+@@ -0,0 +1,2 @@
++function y = eq2a (x)
++    y = (sqrt(4 + x) - 2) / x;
+diff --git a/labs/lab2/eq2a_fixed.m b/labs/lab2/eq2a_fixed.m
+new file mode 100644
+index 0000000..f304b8a
+--- /dev/null
++++ b/labs/lab2/eq2a_fixed.m
+@@ -0,0 +1,2 @@
++function y = eq2a_fixed (x)
++    y = 1/(sqrt(4 + x) + 2);
+diff --git a/labs/lab2/eq2b.m b/labs/lab2/eq2b.m
+new file mode 100644
+index 0000000..84a0db5
+--- /dev/null
++++ b/labs/lab2/eq2b.m
+@@ -0,0 +1,2 @@
++function y = eq2b (x)
++    y = (1 - exp(-x))/x;
+diff --git a/labs/lab2/lab2_p1.m b/labs/lab2/lab2_p1.m
+new file mode 100644
+index 0000000..694c5c1
+--- /dev/null
++++ b/labs/lab2/lab2_p1.m
+@@ -0,0 +1,45 @@
++%% Problem 1
++%%
++% a. log(1.9)  = log(1-(-0.9))
++% To calculate log(1.9) x needs to be -0.9
++reqx = -0.9;
++%%
++% b.
++digits_of_accuracy = 11;
++xtrue = 0.64185388617239469;
++k = 1;
++while abs(eq1(reqx, k) - xtrue) > power(10, (-1) * digits_of_accuracy)
++    k = k + 1;
++end
++xcalc = eq1(reqx, k);
++print('log(1.9) = log(1-(-0.9))');
++disp(sprintf('True value: %0.11f', xtrue));
++disp(sprintf('Calculated at %d (terms) iterations: %0.11f', k, xcalc));
++
++%%
++% c. (x^(2*k - 1)/(2*k - 1))
++% To calculate log(1.9) x needs to be 0.9/2.9
++reqx = 0.9/2.9;
++
++%%
++% d.
++digits_of_accuracy = 11;
++xtrue = 0.64185388617239469;
++k = 1;
++while abs(eq2(reqx, k) - xtrue) > power(10, (-1) * digits_of_accuracy);
++    k = k + 1;
++end
++xcalc = eq2(reqx, k);
++print(xcalc);
++
++print('(x^(2*k - 1)/(2*k - 1))');
++disp(sprintf('True value: %0.11f', xtrue));
++disp(sprintf('Calculated at %d (terms) iterations: %0.11f', k, xcalc));
++
++%%
++% e. The second taylor seriese is better for approximating log(1.9) because it
++% takes less iterations to get a value within 10 significant digits of
++% accuracy. The second equations is faster because the exponent in the
++% numerator is large and will cause the function to correct itself by less
++% during each iteration which means it initially had a better estimate to start
++% with.
+diff --git a/labs/lab2/lab2_p2.m b/labs/lab2/lab2_p2.m
+new file mode 100644
+index 0000000..9621d37
+--- /dev/null
++++ b/labs/lab2/lab2_p2.m
+@@ -0,0 +1,18 @@
++%%
++% 2.
++
++%%
++% a. ((4 + x)^(-1/2) - 2) / x
++print('f(x) = ((4 + x)^(-1/2) - 2) / x')
++print('f_fixed(x) = 1/(sqrt(4 + x) + 2);')
++do_table(@eq2a, @eq2a_fixed)
++disp(sprintf('\n'));
++
++% The 'fixed' function removes the subtraction of large numbers that are
++% nearly equal to eachother. This allows better accuracy.
++
++%%
++% b. (1 - e^(-x))/x
++print('f(x) = (1 - e^(-x))/x')
++do_table(@eq2b, @eq2b)
++disp(sprintf('\n'));
+-- 
+1.7.11.3
+

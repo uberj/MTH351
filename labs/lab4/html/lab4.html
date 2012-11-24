@@ -1,0 +1,169 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab 4</title><meta name="generator" content="MATLAB 7.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-11-04"><meta name="DC.source" content="lab4.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h1>Lab 4</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Problem 1</a></li><li><a href="#4">Problem 2</a></li><li><a href="#6">Problem 3</a></li><li><a href="#9">Problem 4</a></li></ul></div><h2>Problem 1<a name="2"></a></h2><pre class="codeinput">N = 10;
+x = linspace(-5,5,N+1);
+f = inline(<span class="string">'1./(1+x.*x)'</span>,<span class="string">'x'</span>);
+y = f(x);
+plot(x, y, <span class="string">'o'</span>);
+title(<span class="string">'N+1 = 11 equally-spaced data points'</span>);
+t = [-5:.1:5];
+figure;
+plot(t, f(t), <span class="string">'-'</span>);
+title(<span class="string">'Range function'</span>);
+</pre><img vspace="5" hspace="5" src="lab4_01.png" alt=""> <img vspace="5" hspace="5" src="lab4_02.png" alt=""> <h2>Problem 2<a name="4"></a></h2><pre class="codeinput">PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf);
+figure;
+plot(x,y,<span class="string">'o'</span>,t,f(t),<span class="string">'-'</span>,t,v,<span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P {10}(t), err=%g'</span>,err))
+</pre><img vspace="5" hspace="5" src="lab4_03.png" alt=""> <h2>Problem 3<a name="6"></a></h2><pre class="codeinput">K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+<span class="keyword">for</span> i=1:K
+    xcheb(i)=(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K );
+<span class="keyword">end</span>
+plot(xcheb, y, <span class="string">'o'</span>);
+title(<span class="string">'N+1 = 11 points spaced by using the chebychev method'</span>);
+ycheb = f(xcheb);
+PNcheb = polyfit(xcheb,ycheb,N);
+vcheb = polyval(PNcheb,t);
+
+cheberr = norm(f(t)-vcheb,inf);
+figure;
+plot(x,y,<span class="string">'o'</span>,t,f(t),<span class="string">'-'</span>,t,vcheb,<span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and Chebychev Interpolation {10}(t), err=%g'</span>,cheberr))
+</pre><img vspace="5" hspace="5" src="lab4_04.png" alt=""> <img vspace="5" hspace="5" src="lab4_05.png" alt=""> <p>The polynomial interpolation provided by matlabs polyfit finds the coefficeints of a p(x) that fit a vector of X points. The interpolation that happens in Problem 2 uses N equally spaced points (shown in Figure 1) and yeilds a polynomial that interpolates the points but also has a lot of error at the ends of the interval (in this case near -5 and 5). The Chebychev polynomial in problem 3 uses X values generated using the equation '(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K )'. You can see in Figure 3 that the x values used in the Chebychev polynomial are bunched up near the ends of the interval (-5 to 5). The high error at the ends of the polynomail in Problem 2 is an example of Runge's phenomenom. The chebyshev points help mitigate the error poblem by using a least squares method to ensure a minimun maximum error.</p><h2>Problem 4<a name="9"></a></h2><p>As the number of nodes increases, the error in an interpolating polynomial with equally spaced X values becomes exteremely bad at the end of it's interval. In contrast, the polynomial using chebyshev points get's more and more accurate.</p><p class="footer"><br>
+      Published with MATLAB&reg; 7.13<br></p></div><!--
+##### SOURCE BEGIN #####
+%% Lab 4
+%%
+
+%% Problem 1
+%%
+N = 10;
+x = linspace(-5,5,N+1);
+f = inline('1./(1+x.*x)','x');
+y = f(x);
+plot(x, y, 'o');
+title('N+1 = 11 equally-spaced data points');
+t = [-5:.1:5];
+figure;
+plot(t, f(t), '-');
+title('Range function');
+
+%% Problem 2
+%%
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf);
+figure;
+plot(x,y,'o',t,f(t),'-',t,v,'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P {10}(t), err=%g',err))
+
+%% Problem 3
+%%
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+for i=1:K
+    xcheb(i)=(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K );
+end
+plot(xcheb, y, 'o');
+title('N+1 = 11 points spaced by using the chebychev method');
+ycheb = f(xcheb);
+PNcheb = polyfit(xcheb,ycheb,N);
+vcheb = polyval(PNcheb,t);
+
+cheberr = norm(f(t)-vcheb,inf);
+figure;
+plot(x,y,'o',t,f(t),'-',t,vcheb,'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and Chebychev Interpolation {10}(t), err=%g',cheberr))
+
+%%
+% The polynomial interpolation provided by matlabs polyfit finds the
+% coefficeints of a p(x) that fit a vector of X points. The
+% interpolation that happens in Problem 2 uses N equally spaced points
+% (shown in Figure 1) and yeilds a polynomial that interpolates the
+% points but also has a lot of error at the ends of the interval (in
+% this case near -5 and 5). The Chebychev polynomial in problem 3 uses
+% X values generated using the equation '(a+b)/2 + (b-a)/2 * cos(
+% (i-.5)*pi/K )'. You can see in Figure 3 that the x values used in
+% the Chebychev polynomial are bunched up near the ends of the
+% interval (-5 to 5). The high error at the ends of the polynomail in
+% Problem 2 is an example of Runge's phenomenom. The chebyshev points
+% help mitigate the error poblem by using a least squares method to
+% ensure a minimun maximum error.
+
+%% Problem 4
+%%
+% As the number of nodes increases, the error in an interpolating
+% polynomial with equally spaced X values becomes exteremely bad at
+% the end of it's interval. In contrast, the polynomial using
+% chebyshev points get's more and more accurate.
+
+##### SOURCE END #####
+--></body></html>

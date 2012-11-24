@@ -32,9 +32,9 @@ xcheb = zeros(1,K);
 for i=1:K
     xcheb(i)=(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K );
 end
-plot(xcheb, y, 'o');
 title('Chebyshev data [N = 10]');
 ycheb = f(xcheb);
+plot(xcheb, ycheb, 'o');
 PNcheb = polyfit(xcheb,ycheb,N);
 vcheb = polyval(PNcheb,t);
 

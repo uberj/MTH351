@@ -1,0 +1,108 @@
+From 9ee6102b524fe4b6d9d202ec58e5931fc848cfea Mon Sep 17 00:00:00 2001
+From: uberj <uberj@onid.orst.edu>
+Date: Wed, 7 Nov 2012 15:01:34 -0800
+Subject: [PATCH 12/12] Fixed problem 3's chebyshev graph and displayed the
+ graphs for N=20 and N=50
+
+---
+ labs/lab4/lab4.m | 73 +++++++++++++++++++++++++++++++++++++++++++++++++++++---
+ 1 file changed, 70 insertions(+), 3 deletions(-)
+
+diff --git a/labs/lab4/lab4.m b/labs/lab4/lab4.m
+index f5c2b44..49b7c9d 100644
+--- a/labs/lab4/lab4.m
++++ b/labs/lab4/lab4.m
+@@ -33,14 +33,14 @@ for i=1:K
+     xcheb(i)=(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K );
+ end
+ plot(xcheb, y, 'o');
+-title('N+1 = 11 points spaced by using the chebychev method');
++title('Chebyshev data [N = 10]');
+ ycheb = f(xcheb);
+ PNcheb = polyfit(xcheb,ycheb,N);
+ vcheb = polyval(PNcheb,t);
+ 
+ cheberr = norm(f(t)-vcheb,inf);
+ figure;
+-plot(x,y,'o',t,f(t),'-',t,vcheb,'--')
++plot(xcheb,ycheb, 'o', t, f(t), '-', t, vcheb, '--');
+ title(sprintf('f(t) and Chebychev Interpolation {10}(t), err=%g',cheberr))
+ 
+ %%
+@@ -66,5 +66,72 @@ title(sprintf('f(t) and Chebychev Interpolation {10}(t), err=%g',cheberr))
+ % chebyshev points get's more and more accurate.
+ 
+ %%
+-% To see these poloynomials I changed N (at the top of the file) to 20
++% Here are the cases when N = 20 and N = 50
+ % and then 50.
++
++N = 20;
++x = linspace(-5,5,N+1);
++f = inline('1./(1+x.*x)', 'x');
++y = f(x);
++figure;
++plot(x,y,'o');
++title('N+1 = 21 equally-spaced data points');
++t = [-5:.1:5];
++
++PN = polyfit(x,y,N);
++v = polyval(PN,t);
++err = norm(f(t)-v,inf);
++
++figure;
++plot(x,y,'o',t,f(t),'-',t,v,'--');
++title(sprintf('f(t) and P_{20}(t) [N = 20], err%g', err));
++
++K = N+1;
++a = -5;
++b = 5;
++xcheb = zeros(1,K);
++for i=1:K
++    xcheb(i)=(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K );
++end
++ycheb = f(xcheb);
++PNcheb = polyfit(xcheb,ycheb,N);
++vcheb = polyval(PNcheb,t);
++
++cheberr = norm(f(t)-vcheb,inf);
++figure;
++plot(x,y,'o',t,f(t),'-',t,vcheb,'--')
++title(sprintf('f(t) and Chebychev Interpolation {10}(t) [N = 20], err=%g',cheberr))
++
++% N = 50
++
++N = 50;
++x = linspace(-5,5,N+1);
++f = inline('1./(1+x.*x)', 'x');
++y = f(x);
++figure;
++plot(x,y,'o');
++title('N+1 = 51 equally-spaced data points');
++t = [-5:.1:5];
++PN = polyfit(x,y,N);
++v = polyval(PN,t);
++err = norm(f(t)-v,inf);
++
++figure;
++plot(x,y,'o',t,f(t),'-',t,v,'--');
++title(sprintf('f(t) and P_{50}(t) [N = 50], err%g', err));
++
++K = N+1;
++a = -5;
++b = 5;
++xcheb = zeros(1,K-1);
++for i=1:K
++    xcheb(i)=(a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K );
++end
++ycheb = f(xcheb);
++PNcheb = polyfit(xcheb,ycheb,N);
++vcheb = polyval(PNcheb,t);
++
++cheberr = norm(f(t)-vcheb,inf);
++figure;
++plot(x,y,'o',t,f(t),'-',t,vcheb,'--')
++title(sprintf('f(t) and Chebychev Interpolation {10}(t) [N = 50], err=%g',cheberr))
+-- 
+1.7.11.3
+

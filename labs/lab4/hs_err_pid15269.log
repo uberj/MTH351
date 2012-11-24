@@ -1,0 +1,552 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+# java.lang.OutOfMemoryError: Cannot create GC thread. Out of system resources.
+#
+#  Internal Error (gcTaskThread.cpp:38), pid=15269, tid=139749847201536
+#  Error: Cannot create GC thread. Out of system resources.
+#
+# JRE version: 6.0_17-b04
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (14.3-b01 mixed mode linux-amd64 )
+# If you would like to submit a bug report, please visit:
+#   http://java.sun.com/webapps/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f1a04440800):  JavaThread "Unknown thread" [_thread_in_vm, id=15341, stack(0x00007f1a0b5ff000,0x00007f1a0c000000)]
+
+Stack: [0x00007f1a0b5ff000,0x00007f1a0c000000],  sp=0x00007f1a0bffdbe0,  free space=10234k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0x6bd1ef]
+V  [libjvm.so+0x2be6c8]
+V  [libjvm.so+0x33a2fd]
+V  [libjvm.so+0x338e3e]
+V  [libjvm.so+0x338bd3]
+V  [libjvm.so+0x5a87c7]
+V  [libjvm.so+0x697695]
+V  [libjvm.so+0x69732a]
+V  [libjvm.so+0x377cd0]
+V  [libjvm.so+0x67f5af]
+V  [libjvm.so+0x3def30]
+C  [libmwjmi.so+0x41663]  _Z9InitSunVMN5boost8optionalIKSt6vectorISsSaISsEEEE+0x993
+C  [libmwjmi.so+0x421af]
+C  [libmwjmi.so+0x422cb]
+C  [libmwjmi.so+0x2eddd]  _Z7mljInitv+0x1d
+C  [libmwmcr.so+0x4184a]
+C  [libmwmcr.so+0x32962]
+C  [libmwmcr.so+0x32b1a]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x00007f1a04440800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=15341, stack(0x00007f1a0b5ff000,0x00007f1a0c000000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Dynamic libraries:
+00400000-00404000 r-xp 00000000 00:21 621917                             /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/MATLAB
+00603000-00604000 rw-p 00003000 00:21 621917                             /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/MATLAB
+017a3000-018ed000 rw-p 00000000 00:00 0                                  [heap]
+3970a00000-3970a20000 r-xp 00000000 fd:00 133081                         /lib64/ld-2.12.so
+3970c1f000-3970c20000 r--p 0001f000 fd:00 133081                         /lib64/ld-2.12.so
+3970c20000-3970c21000 rw-p 00020000 fd:00 133081                         /lib64/ld-2.12.so
+3970c21000-3970c22000 rw-p 00000000 00:00 0 
+3970e00000-3970f89000 r-xp 00000000 fd:00 138188                         /lib64/libc-2.12.so
+3970f89000-3971189000 ---p 00189000 fd:00 138188                         /lib64/libc-2.12.so
+3971189000-397118d000 r--p 00189000 fd:00 138188                         /lib64/libc-2.12.so
+397118d000-397118e000 rw-p 0018d000 fd:00 138188                         /lib64/libc-2.12.so
+397118e000-3971193000 rw-p 00000000 00:00 0 
+3971200000-3971283000 r-xp 00000000 fd:00 138189                         /lib64/libm-2.12.so
+3971283000-3971482000 ---p 00083000 fd:00 138189                         /lib64/libm-2.12.so
+3971482000-3971483000 r--p 00082000 fd:00 138189                         /lib64/libm-2.12.so
+3971483000-3971484000 rw-p 00083000 fd:00 138189                         /lib64/libm-2.12.so
+3971600000-3971602000 r-xp 00000000 fd:00 138193                         /lib64/libdl-2.12.so
+3971602000-3971802000 ---p 00002000 fd:00 138193                         /lib64/libdl-2.12.so
+3971802000-3971803000 r--p 00002000 fd:00 138193                         /lib64/libdl-2.12.so
+3971803000-3971804000 rw-p 00003000 fd:00 138193                         /lib64/libdl-2.12.so
+3971a00000-3971a17000 r-xp 00000000 fd:00 138192                         /lib64/libpthread-2.12.so
+3971a17000-3971c17000 ---p 00017000 fd:00 138192                         /lib64/libpthread-2.12.so
+3971c17000-3971c18000 r--p 00017000 fd:00 138192                         /lib64/libpthread-2.12.so
+3971c18000-3971c19000 rw-p 00018000 fd:00 138192                         /lib64/libpthread-2.12.so
+3971c19000-3971c1d000 rw-p 00000000 00:00 0 
+3971e00000-3971e15000 r-xp 00000000 fd:00 138190                         /lib64/libz.so.1.2.3
+3971e15000-3972014000 ---p 00015000 fd:00 138190                         /lib64/libz.so.1.2.3
+3972014000-3972015000 r--p 00014000 fd:00 138190                         /lib64/libz.so.1.2.3
+3972015000-3972016000 rw-p 00015000 fd:00 138190                         /lib64/libz.so.1.2.3
+3972200000-3972207000 r-xp 00000000 fd:00 138156                         /lib64/librt-2.12.so
+3972207000-3972406000 ---p 00007000 fd:00 138156                         /lib64/librt-2.12.so
+3972406000-3972407000 r--p 00006000 fd:00 138156                         /lib64/librt-2.12.so
+3972407000-3972408000 rw-p 00007000 fd:00 138156                         /lib64/librt-2.12.so
+3972e00000-3972e16000 r-xp 00000000 fd:00 138197                         /lib64/libresolv-2.12.so
+3972e16000-3973016000 ---p 00016000 fd:00 138197                         /lib64/libresolv-2.12.so
+3973016000-3973017000 r--p 00016000 fd:00 138197                         /lib64/libresolv-2.12.so
+3973017000-3973018000 rw-p 00017000 fd:00 138197                         /lib64/libresolv-2.12.so
+3973018000-397301a000 rw-p 00000000 00:00 0 
+3973200000-3973339000 r-xp 00000000 fd:03 417359                         /usr/lib64/libX11.so.6.3.0
+3973339000-3973539000 ---p 00139000 fd:03 417359                         /usr/lib64/libX11.so.6.3.0
+3973539000-397353f000 rw-p 00139000 fd:03 417359                         /usr/lib64/libX11.so.6.3.0
+3973600000-397361b000 r-xp 00000000 fd:03 417358                         /usr/lib64/libxcb.so.1.1.0
+397361b000-397381a000 ---p 0001b000 fd:03 417358                         /usr/lib64/libxcb.so.1.1.0
+397381a000-397381b000 rw-p 0001a000 fd:03 417358                         /usr/lib64/libxcb.so.1.1.0
+3973a00000-3973a02000 r-xp 00000000 fd:03 393843                         /usr/lib64/libXau.so.6.0.0
+3973a02000-3973c02000 ---p 00002000 fd:03 393843                         /usr/lib64/libXau.so.6.0.0
+3973c02000-3973c03000 rw-p 00002000 fd:03 393843                         /usr/lib64/libXau.so.6.0.0
+3974200000-3974211000 r-xp 00000000 fd:03 417360                         /usr/lib64/libXext.so.6.4.0
+3974211000-3974411000 ---p 00011000 fd:03 417360                         /usr/lib64/libXext.so.6.4.0
+3974411000-3974412000 rw-p 00011000 fd:03 417360                         /usr/lib64/libXext.so.6.4.0
+3977200000-3977218000 r-xp 00000000 fd:03 417364                         /usr/lib64/libXmu.so.6.2.0
+3977218000-3977418000 ---p 00018000 fd:03 417364                         /usr/lib64/libXmu.so.6.2.0
+3977418000-397741a000 rw-p 00018000 fd:03 417364                         /usr/lib64/libXmu.so.6.2.0
+3977e00000-3977e04000 r-xp 00000000 fd:00 132891                         /lib64/libuuid.so.1.3.0
+3977e04000-3978003000 ---p 00004000 fd:00 132891                         /lib64/libuuid.so.1.3.0
+3978003000-3978004000 rw-p 00003000 fd:00 132891                         /lib64/libuuid.so.1.3.0
+3979200000-3979207000 r-xp 00000000 fd:03 417362                         /usr/lib64/libSM.so.6.0.0
+3979207000-3979407000 ---p 00007000 fd:03 417362                         /usr/lib64/libSM.so.6.0.0
+3979407000-3979408000 rw-p 00007000 fd:03 417362                         /usr/lib64/libSM.so.6.0.0
+3979600000-3979617000 r-xp 00000000 fd:03 417361                         /usr/lib64/libICE.so.6.3.0
+3979617000-3979817000 ---p 00017000 fd:03 417361                         /usr/lib64/libICE.so.6.3.0
+3979817000-3979818000 rw-p 00017000 fd:03 417361                         /usr/lib64/libICE.so.6.3.0
+3979818000-397981c000 rw-p 00000000 00:00 0 
+397fa00000-397fa1d000 r-xp 00000000 fd:00 138194                         /lib64/libtinfo.so.5.7
+397fa1d000-397fc1d000 ---p 0001d000 fd:00 138194                         /lib64/libtinfo.so.5.7
+397fc1d000-397fc21000 rw-p 0001d000 fd:00 138194                         /lib64/libtinfo.so.5.7
+3980200000-398025d000 r-xp 00000000 fd:00 138206                         /lib64/libfreebl3.so
+398025d000-398045c000 ---p 0005d000 fd:00 138206                         /lib64/libfreebl3.so
+398045c000-398045d000 r--p 0005c000 fd:00 138206                         /lib64/libfreebl3.so
+398045d000-398045e000 rw-p 0005d000 fd:00 138206                         /lib64/libfreebl3.so
+398045e000-3980462000 rw-p 00000000 00:00 0 
+3980a00000-3980a07000 r-xp 00000000 fd:00 138207                         /lib64/libcrypt-2.12.so
+3980a07000-3980c07000 ---p 00007000 fd:00 138207                         /lib64/libcrypt-2.12.so
+3980c07000-3980c08000 r--p 00007000 fd:00 138207                         /lib64/libcrypt-2.12.so
+3980c08000-3980c09000 rw-p 00008000 fd:00 138207                         /lib64/libcrypt-2.12.so
+3980c09000-3980c37000 rw-p 00000000 00:00 0 
+3980e00000-3980e22000 r-xp 00000000 fd:00 138215                         /lib64/libncurses.so.5.7
+3980e22000-3981021000 ---p 00022000 fd:00 138215                         /lib64/libncurses.so.5.7
+3981021000-3981022000 rw-p 00021000 fd:00 138215                         /lib64/libncurses.so.5.7
+3981400000-3981416000 r-xp 00000000 fd:00 138234                         /lib64/libnsl-2.12.so
+3981416000-3981615000 ---p 00016000 fd:00 138234                         /lib64/libnsl-2.12.so
+3981615000-3981616000 r--p 00015000 fd:00 138234                         /lib64/libnsl-2.12.so
+3981616000-3981617000 rw-p 00016000 fd:00 138234                         /lib64/libnsl-2.12.so
+3981617000-3981619000 rw-p 00000000 00:00 0 
+3986200000-398625f000 r-xp 00000000 fd:03 417363                         /usr/lib64/libXt.so.6.0.0
+398625f000-398645e000 ---p 0005f000 fd:03 417363                         /usr/lib64/libXt.so.6.0.0
+398645e000-3986465000 rw-p 0005e000 fd:03 417363                         /usr/lib64/libXt.so.6.0.0
+7f19e0000000-7f19e0021000 rw-p 00000000 00:00 0 
+7f19e0021000-7f19e4000000 ---p 00000000 00:00 0 
+7f19e4aff000-7f19e4b00000 ---p 00000000 00:00 0 
+7f19e4b00000-7f19e60c0000 rwxp 00000000 00:00 0 
+7f19e60c0000-7f19ecc00000 rwxp 00000000 00:00 0 
+7f19ecc00000-7f19efc00000 rwxp 00000000 00:00 0 
+7f19efc00000-7f19f5f00000 rwxp 00000000 00:00 0 
+7f19f5f00000-7f19f6f00000 rwxp 00000000 00:00 0 
+7f19f6f00000-7f19f9000000 rwxp 00000000 00:00 0 
+7f19f9000000-7f19f9270000 rwxp 00000000 00:00 0 
+7f19f9270000-7f19fc000000 rwxp 00000000 00:00 0 
+7f19fc000000-7f19fc021000 rw-p 00000000 00:00 0 
+7f19fc021000-7f1a00000000 ---p 00000000 00:00 0 
+7f1a00000000-7f1a00021000 rw-p 00000000 00:00 0 
+7f1a00021000-7f1a04000000 ---p 00000000 00:00 0 
+7f1a04000000-7f1a044ef000 rw-p 00000000 00:00 0 
+7f1a044ef000-7f1a08000000 ---p 00000000 00:00 0 
+7f1a08352000-7f1a08353000 ---p 00000000 00:00 0 
+7f1a08353000-7f1a0845e000 rwxp 00000000 00:00 0 
+7f1a0845e000-7f1a08493000 rwxp 00000000 00:00 0 
+7f1a08493000-7f1a084ab000 rwxp 00000000 00:00 0 
+7f1a084ab000-7f1a084dd000 rwxp 00000000 00:00 0 
+7f1a084dd000-7f1a084e8000 rwxp 00000000 00:00 0 
+7f1a084e8000-7f1a0851d000 rwxp 00000000 00:00 0 
+7f1a0851d000-7f1a08535000 rwxp 00000000 00:00 0 
+7f1a08535000-7f1a08566000 rwxp 00000000 00:00 0 
+7f1a08566000-7f1a0856f000 rwxp 00000000 00:00 0 
+7f1a0856f000-7f1a0857f000 rwxp 00000000 00:00 0 
+7f1a0857f000-7f1a08580000 rwxp 00000000 00:00 0 
+7f1a08580000-7f1a0858e000 r-xp 00000000 00:21 633932                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libzip.so
+7f1a0858e000-7f1a08690000 ---p 0000e000 00:21 633932                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libzip.so
+7f1a08690000-7f1a08693000 rw-p 00010000 00:21 633932                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libzip.so
+7f1a08693000-7f1a08694000 rw-p 00000000 00:00 0 
+7f1a08694000-7f1a0869b000 r-xp 00000000 00:21 633936                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/native_threads/libhpi.so
+7f1a0869b000-7f1a0879c000 ---p 00007000 00:21 633936                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/native_threads/libhpi.so
+7f1a0879c000-7f1a0879e000 rw-p 00008000 00:21 633936                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/native_threads/libhpi.so
+7f1a0879e000-7f1a0879f000 rw-p 00000000 00:00 0 
+7f1a0879f000-7f1a087ac000 r-xp 00000000 00:21 633931                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libverify.so
+7f1a087ac000-7f1a088ab000 ---p 0000d000 00:21 633931                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libverify.so
+7f1a088ab000-7f1a088ae000 rw-p 0000c000 00:21 633931                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libverify.so
+7f1a088ae000-7f1a0900c000 r-xp 00000000 00:21 633939                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/server/libjvm.so
+7f1a0900c000-7f1a0910b000 ---p 0075e000 00:21 633939                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/server/libjvm.so
+7f1a0910b000-7f1a09283000 rw-p 0075d000 00:21 633939                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/server/libjvm.so
+7f1a09283000-7f1a092c1000 rw-p 00000000 00:00 0 
+7f1a092c1000-7f1a092ea000 r-xp 00000000 00:21 633911                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libjava.so
+7f1a092ea000-7f1a093e9000 ---p 00029000 00:21 633911                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libjava.so
+7f1a093e9000-7f1a093f0000 rw-p 00028000 00:21 633911                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/libjava.so
+7f1a093f0000-7f1a093f1000 ---p 00000000 00:00 0 
+7f1a093f1000-7f1a09df1000 rwxp 00000000 00:00 0 
+7f1a09df1000-7f1a09df2000 ---p 00000000 00:00 0 
+7f1a09df2000-7f1a0a7f2000 rwxp 00000000 00:00 0 
+7f1a0a7f2000-7f1a0a7f7000 r-xp 00000000 fd:00 133145                     /lib64/libnss_dns-2.12.so
+7f1a0a7f7000-7f1a0a9f6000 ---p 00005000 fd:00 133145                     /lib64/libnss_dns-2.12.so
+7f1a0a9f6000-7f1a0a9f7000 r--p 00004000 fd:00 133145                     /lib64/libnss_dns-2.12.so
+7f1a0a9f7000-7f1a0a9f8000 rw-p 00005000 fd:00 133145                     /lib64/libnss_dns-2.12.so
+7f1a0a9f8000-7f1a0a9fe000 r-xp 00000000 fd:00 131130                     /lib64/libnss_sss.so.2
+7f1a0a9fe000-7f1a0abfd000 ---p 00006000 fd:00 131130                     /lib64/libnss_sss.so.2
+7f1a0abfd000-7f1a0abfe000 rw-p 00005000 fd:00 131130                     /lib64/libnss_sss.so.2
+7f1a0abfe000-7f1a0abff000 ---p 00000000 00:00 0 
+7f1a0abff000-7f1a0b5ff000 rwxp 00000000 00:00 0 
+7f1a0b5ff000-7f1a0b602000 ---p 00000000 00:00 0 
+7f1a0b602000-7f1a0c000000 rwxp 00000000 00:00 0 
+7f1a0c000000-7f1a0c021000 rw-p 00000000 00:00 0 
+7f1a0c021000-7f1a10000000 ---p 00000000 00:00 0 
+7f1a10007000-7f1a10011000 rwxp 00000000 00:00 0 
+7f1a10011000-7f1a100c7000 rwxp 00000000 00:00 0 
+7f1a100c7000-7f1a100d3000 r-xp 00000000 fd:00 135660                     /lib64/libnss_files-2.12.so
+7f1a100d3000-7f1a102d3000 ---p 0000c000 fd:00 135660                     /lib64/libnss_files-2.12.so
+7f1a102d3000-7f1a102d4000 r--p 0000c000 fd:00 135660                     /lib64/libnss_files-2.12.so
+7f1a102d4000-7f1a102d5000 rw-p 0000d000 fd:00 135660                     /lib64/libnss_files-2.12.so
+7f1a102f2000-7f1a102fa000 rw-s 00000000 fd:02 408                        /tmp/hsperfdata_uberj/15269
+7f1a102fa000-7f1a102fb000 rw-p 00000000 00:00 0 
+7f1a102fb000-7f1a102fc000 r--p 00000000 00:00 0 
+7f1a102fc000-7f1a103fc000 rw-p 00000000 00:00 0 
+7f1a103fc000-7f1a103fd000 ---p 00000000 00:00 0 
+7f1a103fd000-7f1a10bcd000 rwxp 00000000 00:00 0 
+7f1a10bcd000-7f1a10bcf000 r-xp 00000000 00:21 622552                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/mklcompat.so
+7f1a10bcf000-7f1a10dce000 ---p 00002000 00:21 622552                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/mklcompat.so
+7f1a10dce000-7f1a10dcf000 rw-p 00001000 00:21 622552                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/mklcompat.so
+7f1a10dcf000-7f1a10e9f000 r-xp 00000000 00:21 635111                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libiomp5.so
+7f1a10e9f000-7f1a10f9e000 ---p 000d0000 00:21 635111                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libiomp5.so
+7f1a10f9e000-7f1a10fa7000 rw-p 000cf000 00:21 635111                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libiomp5.so
+7f1a10fa7000-7f1a10fae000 rw-p 00000000 00:00 0 
+7f1a10fae000-7f1a12ec0000 r-xp 00000000 00:21 622551                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/mkl.so
+7f1a12ec0000-7f1a130c0000 ---p 01f12000 00:21 622551                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/mkl.so
+7f1a130c0000-7f1a13104000 rw-p 01f12000 00:21 622551                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/mkl.so
+7f1a13104000-7f1a13109000 rw-p 00000000 00:00 0 
+7f1a13109000-7f1a18f9a000 r--p 00000000 fd:03 161262                     /usr/lib/locale/locale-archive
+7f1a18f9a000-7f1a18fa1000 rw-p 00000000 00:00 0 
+7f1a18fa1000-7f1a18fa7000 r-xp 00000000 00:21 622090                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwcolamd.so
+7f1a18fa7000-7f1a191a6000 ---p 00006000 00:21 622090                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwcolamd.so
+7f1a191a6000-7f1a191a7000 rw-p 00005000 00:21 622090                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwcolamd.so
+7f1a191a7000-7f1a191a8000 rw-p 00000000 00:00 0 
+7f1a191a8000-7f1a191b0000 r-xp 00000000 00:21 622063                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwamd.so
+7f1a191b0000-7f1a193af000 ---p 00008000 00:21 622063                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwamd.so
+7f1a193af000-7f1a193b0000 rw-p 00007000 00:21 622063                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwamd.so
+7f1a193b0000-7f1a193b1000 rw-p 00000000 00:00 0 
+7f1a193b1000-7f1a193f4000 r-xp 00000000 00:21 622087                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwcholmod.so
+7f1a193f4000-7f1a195f4000 ---p 00043000 00:21 622087                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwcholmod.so
+7f1a195f4000-7f1a195f5000 rw-p 00043000 00:21 622087                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwcholmod.so
+7f1a195f5000-7f1a19607000 r-xp 00000000 00:21 622070                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwblas.so
+7f1a19607000-7f1a19806000 ---p 00012000 00:21 622070                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwblas.so
+7f1a19806000-7f1a19808000 rw-p 00011000 00:21 622070                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwblas.so
+7f1a19808000-7f1a1980a000 rw-p 00000000 00:00 0 
+7f1a1980a000-7f1a1980e000 r-xp 00000000 00:21 622227                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwompwrapper.so
+7f1a1980e000-7f1a19a0d000 ---p 00004000 00:21 622227                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwompwrapper.so
+7f1a19a0d000-7f1a19a0e000 rw-p 00003000 00:21 622227                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwompwrapper.so
+7f1a19a0e000-7f1a19a17000 r-xp 00000000 00:21 622068                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwbinder.so
+7f1a19a17000-7f1a19c16000 ---p 00009000 00:21 622068                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwbinder.so
+7f1a19c16000-7f1a19c17000 rw-p 00008000 00:21 622068                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwbinder.so
+7f1a19c17000-7f1a19c18000 rw-p 00000000 00:00 0 
+7f1a19c18000-7f1a19cdf000 r-xp 00000000 00:21 622183                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathcore.so
+7f1a19cdf000-7f1a19edf000 ---p 000c7000 00:21 622183                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathcore.so
+7f1a19edf000-7f1a19ee3000 rw-p 000c7000 00:21 622183                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathcore.so
+7f1a19ee3000-7f1a19ee5000 rw-p 00000000 00:00 0 
+7f1a19ee5000-7f1a1a16f000 r-xp 00000000 00:21 621999                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libhdf5.so.6.0.5
+7f1a1a16f000-7f1a1a36f000 ---p 0028a000 00:21 621999                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libhdf5.so.6.0.5
+7f1a1a36f000-7f1a1a37a000 rw-p 0028a000 00:21 621999                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libhdf5.so.6.0.5
+7f1a1a37a000-7f1a1a37b000 rw-p 00000000 00:00 0 
+7f1a1a37b000-7f1a1a396000 r-xp 00000000 00:21 622000                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libhdf5_hl.so.6.0.5
+7f1a1a396000-7f1a1a596000 ---p 0001b000 00:21 622000                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libhdf5_hl.so.6.0.5
+7f1a1a596000-7f1a1a597000 rw-p 0001b000 00:21 622000                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libhdf5_hl.so.6.0.5
+7f1a1a597000-7f1a1a5aa000 rw-p 00000000 00:00 0 
+7f1a1a5aa000-7f1a1a82b000 r-xp 00000000 00:21 635104                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libXm.so.3.0.2
+7f1a1a82b000-7f1a1aa2b000 ---p 00281000 00:21 635104                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libXm.so.3.0.2
+7f1a1aa2b000-7f1a1aa55000 rw-p 00281000 00:21 635104                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libXm.so.3.0.2
+7f1a1aa55000-7f1a1aa56000 rw-p 00000000 00:00 0 
+7f1a1aa56000-7f1a1aaff000 r-xp 00000000 00:21 622168                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwlapack.so
+7f1a1aaff000-7f1a1acfe000 ---p 000a9000 00:21 622168                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwlapack.so
+7f1a1acfe000-7f1a1ad07000 rw-p 000a8000 00:21 622168                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwlapack.so
+7f1a1ad07000-7f1a1ad08000 rw-p 00000000 00:00 0 
+7f1a1ad08000-7f1a1af48000 r-xp 00000000 00:21 622154                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhgdatatypes.so
+7f1a1af48000-7f1a1b148000 ---p 00240000 00:21 622154                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhgdatatypes.so
+7f1a1b148000-7f1a1b165000 rw-p 00240000 00:21 622154                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhgdatatypes.so
+7f1a1b165000-7f1a1b166000 rw-p 00000000 00:00 0 
+7f1a1b166000-7f1a1b197000 r-xp 00000000 00:21 622150                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhardcopy.so
+7f1a1b197000-7f1a1b396000 ---p 00031000 00:21 622150                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhardcopy.so
+7f1a1b396000-7f1a1b398000 rw-p 00030000 00:21 622150                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhardcopy.so
+7f1a1b398000-7f1a1b39a000 rw-p 00000000 00:00 0 
+7f1a1b39a000-7f1a1b3aa000 r-xp 00000000 00:21 622147                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwgraphics_util.so
+7f1a1b3aa000-7f1a1b5a9000 ---p 00010000 00:21 622147                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwgraphics_util.so
+7f1a1b5a9000-7f1a1b5ab000 rw-p 0000f000 00:21 622147                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwgraphics_util.so
+7f1a1b5ab000-7f1a1b5bc000 r-xp 00000000 00:21 622165                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwir_xfmr.so
+7f1a1b5bc000-7f1a1b7bc000 ---p 00011000 00:21 622165                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwir_xfmr.so
+7f1a1b7bc000-7f1a1b7bd000 rw-p 00011000 00:21 622165                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwir_xfmr.so
+7f1a1b7bd000-7f1a1b7c0000 rw-p 00000000 00:00 0 
+7f1a1b7c0000-7f1a1b828000 r-xp 00000000 00:21 622468                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwspmatrix.so
+7f1a1b828000-7f1a1ba28000 ---p 00068000 00:21 622468                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwspmatrix.so
+7f1a1ba28000-7f1a1ba29000 rw-p 00068000 00:21 622468                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwspmatrix.so
+7f1a1ba29000-7f1a1ba48000 r-xp 00000000 00:21 622176                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_pcodegen.so
+7f1a1ba48000-7f1a1bc48000 ---p 0001f000 00:21 622176                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_pcodegen.so
+7f1a1bc48000-7f1a1bc4a000 rw-p 0001f000 00:21 622176                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_pcodegen.so
+7f1a1bc4a000-7f1a1bc61000 r-xp 00000000 00:21 622177                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_pcodeio.so
+7f1a1bc61000-7f1a1be60000 ---p 00017000 00:21 622177                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_pcodeio.so
+7f1a1be60000-7f1a1be62000 rw-p 00016000 00:21 622177                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_pcodeio.so
+7f1a1be62000-7f1a1be63000 rw-p 00000000 00:00 0 
+7f1a1be63000-7f1a1be71000 r-xp 00000000 00:21 622202                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlib.so
+7f1a1be71000-7f1a1c070000 ---p 0000e000 00:21 622202                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlib.so
+7f1a1c070000-7f1a1c072000 rw-p 0000d000 00:21 622202                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlib.so
+7f1a1c072000-7f1a1c09d000 r-xp 00000000 00:21 622188                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathrng.so
+7f1a1c09d000-7f1a1c29c000 ---p 0002b000 00:21 622188                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathrng.so
+7f1a1c29c000-7f1a1c29e000 rw-p 0002a000 00:21 622188                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathrng.so
+7f1a1c29e000-7f1a1c2a0000 rw-p 00000000 00:00 0 
+7f1a1c2a0000-7f1a1c2dd000 r-xp 00000000 00:21 622288                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwprofiler.so
+7f1a1c2dd000-7f1a1c4dd000 ---p 0003d000 00:21 622288                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwprofiler.so
+7f1a1c4dd000-7f1a1c4e0000 rw-p 0003d000 00:21 622288                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwprofiler.so
+7f1a1c4e0000-7f1a1c4e1000 rw-p 00000000 00:00 0 
+7f1a1c4e1000-7f1a1c520000 r-xp 00000000 00:21 622029                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmat.so
+7f1a1c520000-7f1a1c720000 ---p 0003f000 00:21 622029                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmat.so
+7f1a1c720000-7f1a1c723000 rw-p 0003f000 00:21 622029                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmat.so
+7f1a1c723000-7f1a1cade000 r-xp 00000000 00:21 622546                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libxerces-c.so.27.0
+7f1a1cade000-7f1a1ccdd000 ---p 003bb000 00:21 622546                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libxerces-c.so.27.0
+7f1a1ccdd000-7f1a1cd21000 rw-p 003ba000 00:21 622546                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libxerces-c.so.27.0
+7f1a1cd21000-7f1a1cd23000 rw-p 00000000 00:00 0 
+7f1a1cd23000-7f1a1cd93000 r-xp 00000000 00:21 622492                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwxmlcore.so
+7f1a1cd93000-7f1a1cf92000 ---p 00070000 00:21 622492                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwxmlcore.so
+7f1a1cf92000-7f1a1cf9a000 rw-p 0006f000 00:21 622492                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwxmlcore.so
+7f1a1cf9a000-7f1a1cf9b000 rw-p 00000000 00:00 0 
+7f1a1cf9b000-7f1a1cfb4000 r-xp 00000000 00:21 621962                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_iostreams.so.1.44.0
+7f1a1cfb4000-7f1a1d1b3000 ---p 00019000 00:21 621962                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_iostreams.so.1.44.0
+7f1a1d1b3000-7f1a1d1b5000 rw-p 00018000 00:21 621962                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_iostreams.so.1.44.0
+7f1a1d1b5000-7f1a1d1b6000 rw-p 00000000 00:00 0 
+7f1a1d1b6000-7f1a1d328000 r-xp 00000000 00:21 622488                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwuix.so
+7f1a1d328000-7f1a1d527000 ---p 00172000 00:21 622488                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwuix.so
+7f1a1d527000-7f1a1d53c000 rw-p 00171000 00:21 622488                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwuix.so
+7f1a1d53c000-7f1a1d541000 rw-p 00000000 00:00 0 
+7f1a1d541000-7f1a1d596000 r-xp 00000000 00:21 622174                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_ir.so
+7f1a1d596000-7f1a1d796000 ---p 00055000 00:21 622174                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_ir.so
+7f1a1d796000-7f1a1d79e000 rw-p 00055000 00:21 622174                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_ir.so
+7f1a1d79e000-7f1a1d7a3000 r-xp 00000000 00:21 622487                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwuinone.so
+7f1a1d7a3000-7f1a1d9a3000 ---p 00005000 00:21 622487                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwuinone.so
+7f1a1d9a3000-7f1a1d9a4000 rw-p 00005000 00:21 622487                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwuinone.so
+7f1a1d9a4000-7f1a1d9a5000 rw-p 00000000 00:00 0 
+7f1a1d9a5000-7f1a1da4b000 r-xp 00000000 00:21 622486                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwudd_mi.so
+7f1a1da4b000-7f1a1dc4a000 ---p 000a6000 00:21 622486                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwudd_mi.so
+7f1a1dc4a000-7f1a1dc56000 rw-p 000a5000 00:21 622486                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwudd_mi.so
+7f1a1dc56000-7f1a1dc57000 rw-p 00000000 00:00 0 
+7f1a1dc57000-7f1a1dca0000 r-xp 00000000 00:21 622544                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libuij.so
+7f1a1dca0000-7f1a1dea0000 ---p 00049000 00:21 622544                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libuij.so
+7f1a1dea0000-7f1a1dea3000 rw-p 00049000 00:21 622544                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libuij.so
+7f1a1dea3000-7f1a1dfaf000 r-xp 00000000 00:21 622156                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhgutils.so
+7f1a1dfaf000-7f1a1e1ae000 ---p 0010c000 00:21 622156                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhgutils.so
+7f1a1e1ae000-7f1a1e1c2000 rw-p 0010b000 00:21 622156                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhgutils.so
+7f1a1e1c2000-7f1a1e1c4000 rw-p 00000000 00:00 0 
+7f1a1e1c4000-7f1a1ef0e000 r-xp 00000000 00:21 622152                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhg.so
+7f1a1ef0e000-7f1a1f10d000 ---p 00d4a000 00:21 622152                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhg.so
+7f1a1f10d000-7f1a1f224000 rw-p 00d49000 00:21 622152                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwhg.so
+7f1a1f224000-7f1a1f232000 rw-p 00000000 00:00 0 
+7f1a1f232000-7f1a1f339000 r-xp 00000000 00:21 622148                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwgui.so
+7f1a1f339000-7f1a1f538000 ---p 00107000 00:21 622148                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwgui.so
+7f1a1f538000-7f1a1f574000 rw-p 00106000 00:21 622148                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwgui.so
+7f1a1f574000-7f1a1f575000 rw-p 00000000 00:00 0 
+7f1a1f575000-7f1a1f7e6000 r-xp 00000000 00:21 622197                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmcos.so
+7f1a1f7e6000-7f1a1f9e5000 ---p 00271000 00:21 622197                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmcos.so
+7f1a1f9e5000-7f1a1fa10000 rw-p 00270000 00:21 622197                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmcos.so
+7f1a1fa10000-7f1a1fa11000 rw-p 00000000 00:00 0 
+7f1a1fa11000-7f1a1fa18000 r-xp 00000000 00:21 622214                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmtok.so
+7f1a1fa18000-7f1a1fc18000 ---p 00007000 00:21 622214                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmtok.so
+7f1a1fc18000-7f1a1fc19000 rw-p 00007000 00:21 622214                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmtok.so
+7f1a1fc19000-7f1a1fc94000 r-xp 00000000 00:21 622203                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlint.so
+7f1a1fc94000-7f1a1fe93000 ---p 0007b000 00:21 622203                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlint.so
+7f1a1fe93000-7f1a1fe9b000 rw-p 0007a000 00:21 622203                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlint.so
+7f1a1fe9b000-7f1a1fe9c000 rw-p 00000000 00:00 0 
+7f1a1fe9c000-7f1a1ff80000 r-xp 00000000 00:21 622485                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwudd.so
+7f1a1ff80000-7f1a2017f000 ---p 000e4000 00:21 622485                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwudd.so
+7f1a2017f000-7f1a20197000 rw-p 000e3000 00:21 622485                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwudd.so
+7f1a20197000-7f1a20199000 rw-p 00000000 00:00 0 
+7f1a20199000-7f1a203f7000 r-xp 00000000 00:21 622175                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_parser.so
+7f1a203f7000-7f1a205f7000 ---p 0025e000 00:21 622175                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_parser.so
+7f1a205f7000-7f1a20a8d000 rw-p 0025e000 00:21 622175                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_parser.so
+7f1a20a8d000-7f1a20a9d000 r-xp 00000000 00:21 622030                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmex.so
+7f1a20a9d000-7f1a20c9c000 ---p 00010000 00:21 622030                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmex.so
+7f1a20c9c000-7f1a20c9e000 rw-p 0000f000 00:21 622030                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmex.so
+7f1a20c9e000-7f1a20c9f000 rw-p 00000000 00:00 0 
+7f1a20c9f000-7f1a20ca0000 r-xp 00000000 00:21 622219                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwnativejava_services.so
+7f1a20ca0000-7f1a20ea0000 ---p 00001000 00:21 622219                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwnativejava_services.so
+7f1a20ea0000-7f1a20ea1000 rw-p 00001000 00:21 622219                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwnativejava_services.so
+7f1a20ea1000-7f1a21032000 r-xp 00000000 00:21 622163                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwiqm.so
+7f1a21032000-7f1a21232000 ---p 00191000 00:21 622163                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwiqm.so
+7f1a21232000-7f1a2124e000 rw-p 00191000 00:21 622163                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwiqm.so
+7f1a2124e000-7f1a21254000 rw-p 00000000 00:00 0 
+7f1a21254000-7f1a212c5000 r-xp 00000000 00:21 621971                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_serialization.so.1.44.0
+7f1a212c5000-7f1a214c5000 ---p 00071000 00:21 621971                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_serialization.so.1.44.0
+7f1a214c5000-7f1a214c9000 rw-p 00071000 00:21 621971                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_serialization.so.1.44.0
+7f1a214c9000-7f1a214d8000 r-xp 00000000 00:21 622312                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwsettings_res.so
+7f1a214d8000-7f1a216d7000 ---p 0000f000 00:21 622312                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwsettings_res.so
+7f1a216d7000-7f1a216d8000 rw-p 0000e000 00:21 622312                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwsettings_res.so
+7f1a216d8000-7f1a216d9000 rw-p 00000000 00:00 0 
+7f1a216d9000-7f1a21780000 r-xp 00000000 00:21 622190                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathutil.so
+7f1a21780000-7f1a2197f000 ---p 000a7000 00:21 622190                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathutil.so
+7f1a2197f000-7f1a21980000 rw-p 000a6000 00:21 622190                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmathutil.so
+7f1a21980000-7f1a21c4b000 r-xp 00000000 00:21 622204                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlutil.so
+7f1a21c4b000-7f1a21e4a000 ---p 002cb000 00:21 622204                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlutil.so
+7f1a21e4a000-7f1a21e6b000 rw-p 002ca000 00:21 622204                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmlutil.so
+7f1a21e6b000-7f1a21e79000 rw-p 00000000 00:00 0 
+7f1a21e79000-7f1a21e8c000 r-xp 00000000 00:21 621972                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_signals.so.1.44.0
+7f1a21e8c000-7f1a2208c000 ---p 00013000 00:21 621972                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_signals.so.1.44.0
+7f1a2208c000-7f1a2208d000 rw-p 00013000 00:21 621972                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_signals.so.1.44.0
+7f1a2208d000-7f1a2208e000 rw-p 00000000 00:00 0 
+7f1a2208e000-7f1a22199000 r-xp 00000000 00:21 621970                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_regex.so.1.44.0
+7f1a22199000-7f1a22399000 ---p 0010b000 00:21 621970                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_regex.so.1.44.0
+7f1a22399000-7f1a223a0000 rw-p 0010b000 00:21 621970                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_regex.so.1.44.0
+7f1a223a0000-7f1a223c2000 r-xp 00000000 00:21 621960                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_filesystem.so.1.44.0
+7f1a223c2000-7f1a225c1000 ---p 00022000 00:21 621960                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_filesystem.so.1.44.0
+7f1a225c1000-7f1a225c3000 rw-p 00021000 00:21 621960                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_filesystem.so.1.44.0
+7f1a225c3000-7f1a225c4000 rw-p 00000000 00:00 0 
+7f1a225c4000-7f1a227a2000 r-xp 00000000 00:21 622044                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwMATLAB_res.so
+7f1a227a2000-7f1a229a1000 ---p 001de000 00:21 622044                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwMATLAB_res.so
+7f1a229a1000-7f1a229a3000 rw-p 001dd000 00:21 622044                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwMATLAB_res.so
+7f1a229a3000-7f1a229aa000 rw-p 00000000 00:00 0 
+7f1a229aa000-7f1a229ac000 r-xp 00000000 00:21 622294                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwresource_core.so
+7f1a229ac000-7f1a22bab000 ---p 00002000 00:21 622294                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwresource_core.so
+7f1a22bab000-7f1a22bac000 rw-p 00001000 00:21 622294                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwresource_core.so
+7f1a22bac000-7f1a22bad000 rw-p 00000000 00:00 0 
+7f1a22bad000-7f1a22bc7000 r-xp 00000000 00:21 622542                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libtbbmalloc.so.2
+7f1a22bc7000-7f1a22cc6000 ---p 0001a000 00:21 622542                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libtbbmalloc.so.2
+7f1a22cc6000-7f1a22cc9000 rw-p 00019000 00:21 622542                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libtbbmalloc.so.2
+7f1a22cc9000-7f1a22cd6000 rw-p 00000000 00:00 0 
+7f1a22cd6000-7f1a22d10000 r-xp 00000000 00:21 622541                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libtbb.so.2
+7f1a22d10000-7f1a22e10000 ---p 0003a000 00:21 622541                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libtbb.so.2
+7f1a22e10000-7f1a22e14000 rw-p 0003a000 00:21 622541                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libtbb.so.2
+7f1a22e14000-7f1a22e15000 rw-p 00000000 00:00 0 
+7f1a22e15000-7f1a22e20000 r-xp 00000000 00:21 622004                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicuio.so.44.2
+7f1a22e20000-7f1a2301f000 ---p 0000b000 00:21 622004                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicuio.so.44.2
+7f1a2301f000-7f1a23021000 rw-p 0000a000 00:21 622004                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicuio.so.44.2
+7f1a23021000-7f1a23022000 rw-p 00000000 00:00 0 
+7f1a23022000-7f1a2320e000 r-xp 00000000 00:21 622003                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicui18n.so.44.2
+7f1a2320e000-7f1a2340e000 ---p 001ec000 00:21 622003                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicui18n.so.44.2
+7f1a2340e000-7f1a2341a000 rw-p 001ec000 00:21 622003                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicui18n.so.44.2
+7f1a2341a000-7f1a23569000 r-xp 00000000 00:21 622005                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicuuc.so.44.2
+7f1a23569000-7f1a23768000 ---p 0014f000 00:21 622005                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicuuc.so.44.2
+7f1a23768000-7f1a23779000 rw-p 0014e000 00:21 622005                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicuuc.so.44.2
+7f1a23779000-7f1a2377c000 rw-p 00000000 00:00 0 
+7f1a2377c000-7f1a245bc000 r--p 00000000 00:21 622002                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicudata.so.44.2
+7f1a245bc000-7f1a247bb000 ---p 00e40000 00:21 622002                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicudata.so.44.2
+7f1a247bb000-7f1a247bc000 rw-p 00e3f000 00:21 622002                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libicudata.so.44.2
+7f1a247bc000-7f1a247bd000 rw-p 00000000 00:00 0 
+7f1a247bd000-7f1a247e3000 r-xp 00000000 00:21 621989                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libexpat.so.1.5.0
+7f1a247e3000-7f1a249e2000 ---p 00026000 00:21 621989                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libexpat.so.1.5.0
+7f1a249e2000-7f1a249e5000 rw-p 00025000 00:21 621989                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libexpat.so.1.5.0
+7f1a249e5000-7f1a249fa000 r-xp 00000000 00:21 621974                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_thread.so.1.44.0
+7f1a249fa000-7f1a24bfa000 ---p 00015000 00:21 621974                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_thread.so.1.44.0
+7f1a24bfa000-7f1a24bfc000 rw-p 00015000 00:21 621974                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_thread.so.1.44.0
+7f1a24bfc000-7f1a24bfe000 r-xp 00000000 00:21 621973                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_system.so.1.44.0
+7f1a24bfe000-7f1a24dfe000 ---p 00002000 00:21 621973                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_system.so.1.44.0
+7f1a24dfe000-7f1a24dff000 rw-p 00002000 00:21 621973                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_system.so.1.44.0
+7f1a24dff000-7f1a24e00000 rw-p 00000000 00:00 0 
+7f1a24e00000-7f1a24e11000 r-xp 00000000 00:21 621959                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_date_time.so.1.44.0
+7f1a24e11000-7f1a25010000 ---p 00011000 00:21 621959                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_date_time.so.1.44.0
+7f1a25010000-7f1a25012000 rw-p 00010000 00:21 621959                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libboost_date_time.so.1.44.0
+7f1a25012000-7f1a2507e000 r-xp 00000000 00:21 622157                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwi18n.so
+7f1a2507e000-7f1a2527e000 ---p 0006c000 00:21 622157                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwi18n.so
+7f1a2527e000-7f1a25283000 rw-p 0006c000 00:21 622157                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwi18n.so
+7f1a25283000-7f1a25285000 rw-p 00000000 00:00 0 
+7f1a25285000-7f1a2529b000 r-xp 00000000 00:21 635105                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libgcc_s.so.1
+7f1a2529b000-7f1a2549a000 ---p 00016000 00:21 635105                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libgcc_s.so.1
+7f1a2549a000-7f1a2549b000 rw-p 00015000 00:21 635105                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libgcc_s.so.1
+7f1a2549b000-7f1a254bb000 rw-p 00000000 00:00 0 
+7f1a254bb000-7f1a254c2000 r--s 00000000 fd:03 396886                     /usr/lib64/gconv/gconv-modules.cache
+7f1a254c2000-7f1a255ac000 r-xp 00000000 00:21 635113                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libstdc++.so.6.0.10
+7f1a255ac000-7f1a257ac000 ---p 000ea000 00:21 635113                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libstdc++.so.6.0.10
+7f1a257ac000-7f1a257b3000 r--p 000ea000 00:21 635113                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libstdc++.so.6.0.10
+7f1a257b3000-7f1a257b5000 rw-p 000f1000 00:21 635113                     /nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64/libstdc++.so.6.0.10
+7f1a257b5000-7f1a257c9000 rw-p 00000000 00:00 0 
+7f1a257c9000-7f1a25ccf000 r-xp 00000000 00:21 622173                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_interpreter.so
+7f1a25ccf000-7f1a25ecf000 ---p 00506000 00:21 622173                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_interpreter.so
+7f1a25ecf000-7f1a25fab000 rw-p 00506000 00:21 622173                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_interpreter.so
+7f1a25fab000-7f1a26046000 rw-p 00000000 00:00 0 
+7f1a26046000-7f1a260cf000 r-xp 00000000 00:21 622172                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_dispatcher.so
+7f1a260cf000-7f1a262ce000 ---p 00089000 00:21 622172                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_dispatcher.so
+7f1a262ce000-7f1a262d5000 rw-p 00088000 00:21 622172                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwm_dispatcher.so
+7f1a262d5000-7f1a26360000 r-xp 00000000 00:21 622199                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmcr.so
+7f1a26360000-7f1a26560000 ---p 0008b000 00:21 622199                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmcr.so
+7f1a26560000-7f1a26568000 rw-p 0008b000 00:21 622199                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmcr.so
+7f1a26568000-7f1a2656b000 rw-p 00000000 00:00 0 
+7f1a2656b000-7f1a26596000 r-xp 00000000 00:21 622072                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwbridge.so
+7f1a26596000-7f1a26795000 ---p 0002b000 00:21 622072                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwbridge.so
+7f1a26795000-7f1a26798000 rw-p 0002a000 00:21 622072                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwbridge.so
+7f1a26798000-7f1a2679f000 rw-p 00000000 00:00 0 
+7f1a2679f000-7f1a2680d000 r-xp 00000000 00:21 622166                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwjmi.so
+7f1a2680d000-7f1a26a0d000 ---p 0006e000 00:21 622166                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwjmi.so
+7f1a26a0d000-7f1a26a12000 rw-p 0006e000 00:21 622166                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwjmi.so
+7f1a26a12000-7f1a26a13000 rw-p 00000000 00:00 0 
+7f1a26a13000-7f1a26c08000 r-xp 00000000 00:21 622310                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwservices.so
+7f1a26c08000-7f1a26e08000 ---p 001f5000 00:21 622310                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwservices.so
+7f1a26e08000-7f1a26e1b000 rw-p 001f5000 00:21 622310                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwservices.so
+7f1a26e1b000-7f1a26e2a000 rw-p 00000000 00:00 0 
+7f1a26e2a000-7f1a26e63000 r-xp 00000000 00:21 622210                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmpath.so
+7f1a26e63000-7f1a27063000 ---p 00039000 00:21 622210                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmpath.so
+7f1a27063000-7f1a27066000 rw-p 00039000 00:21 622210                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwmpath.so
+7f1a27066000-7f1a27068000 rw-p 00000000 00:00 0 
+7f1a27068000-7f1a27105000 r-xp 00000000 00:21 622495                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmx.so
+7f1a27105000-7f1a27305000 ---p 0009d000 00:21 622495                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmx.so
+7f1a27305000-7f1a27309000 rw-p 0009d000 00:21 622495                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmx.so
+7f1a27309000-7f1a273c0000 r-xp 00000000 00:21 622128                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwfl.so
+7f1a273c0000-7f1a275bf000 ---p 000b7000 00:21 622128                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwfl.so
+7f1a275bf000-7f1a275c8000 rw-p 000b6000 00:21 622128                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libmwfl.so
+7f1a275c8000-7f1a275d8000 rw-p 00000000 00:00 0 
+7f1a275d8000-7f1a276b0000 r-xp 00000000 00:21 622545                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libut.so
+7f1a276b0000-7f1a278af000 ---p 000d8000 00:21 622545                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libut.so
+7f1a278af000-7f1a278bb000 rw-p 000d7000 00:21 622545                     /nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64/libut.so
+7f1a278bb000-7f1a278d2000 rw-p 00000000 00:00 0 
+7fff6c926000-7fff6c939000 rwxp 00000000 00:00 0                          [stack]
+7fff6c939000-7fff6c93b000 rw-p 00000000 00:00 0 
+7fff6c9ff000-7fff6ca00000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 r-xp 00000000 00:00 0                  [vsyscall]
+
+VM Arguments:
+jvm_args: -Xms64m -XX:NewRatio=3 -XX:MaxPermSize=128m -Xmx196m -XX:MaxDirectMemorySize=2147400000 -Djava.util.prefs.PreferencesFactory=com.mathworks.util.DisabledPreferencesFactory -XX:+AllowUserSignalHandlers -Xrs -Dsun.awt.disableMixing=true -Djava.library.path=/nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64 vfprintf abort -Djava.awt.headless=true -Dfile.encoding=UTF-8 
+java_command: <unknown>
+Launcher Type: generic
+
+Environment Variables:
+PATH=/usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/sbin/:/usr/local/apps/bin/
+LD_LIBRARY_PATH=/nfs/stak/a1/rhel5apps/matlab2011b/sys/os/glnxa64:/nfs/stak/a1/rhel5apps/matlab2011b/bin/glnxa64:/nfs/stak/a1/rhel5apps/matlab2011b/extern/lib/glnxa64:/nfs/stak/a1/rhel5apps/matlab2011b/runtime/glnxa64:/nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/native_threads:/nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64/server:/nfs/stak/a1/rhel5apps/matlab2011b/sys/java/jre/glnxa64/jre/lib/amd64
+SHELL=/bin/bash
+DISPLAY=
+ARCH=glnxa64
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x6bddc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGBUS: [libjvm.so+0x6bddc0], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGFPE: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGPIPE: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGXFSZ: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGILL: [libjvm.so+0x594f90], sa_mask[0]=0x7ffbfeff, sa_flags=0x10000004
+SIGUSR1: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGUSR2: [libjvm.so+0x597750], sa_mask[0]=0x08080002, sa_flags=0x10000004
+SIGHUP: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGINT: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGTERM: SIG_DFL, sa_mask[0]=0x00000000, sa_flags=0x00000000
+SIGQUIT: [libmwmcr.so+0x6ca50], sa_mask[0]=0x08080002, sa_flags=0x00000004
+
+
+---------------  S Y S T E M  ---------------
+
+OS:Red Hat Enterprise Linux Workstation release 6.3 (Santiago)
+
+uname:Linux 2.6.32-279.el6.x86_64 #1 SMP Wed Jun 13 18:24:36 EDT 2012 x86_64
+libc:glibc 2.12 NPTL 2.12 
+rlimit: STACK 10240k, CORE 0k, NPROC 50, NOFILE 4096, AS infinity
+load average:2.58 1.39 0.70
+
+CPU:total 8 (4 cores per cpu, 1 threads per core) family 6 model 23 stepping 6, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1
+
+Memory: 4k page, physical 32874224k(6107428k free), swap 13402104k(13097420k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (14.3-b01) for linux-amd64 JRE (1.6.0_17-b04), built on Oct 11 2009 01:08:48 by "java_re" with gcc 3.2.2 (SuSE Linux)
+
+time: Wed Nov  7 16:09:47 2012
+elapsed time: 0 seconds
+

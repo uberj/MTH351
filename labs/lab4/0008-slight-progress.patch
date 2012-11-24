@@ -1,0 +1,56 @@
+From 55abbd5dc1026cba8628c37c82a86f69fe103b9c Mon Sep 17 00:00:00 2001
+From: uberj <uberj@onid.orst.edu>
+Date: Mon, 22 Oct 2012 18:54:03 -0700
+Subject: [PATCH 08/12] slight progress.
+
+---
+ labs/lab3/lab3.m     | 18 ++++++++++++------
+ labs/lab3/make_lib.m |  6 +-----
+ 2 files changed, 13 insertions(+), 11 deletions(-)
+
+diff --git a/labs/lab3/lab3.m b/labs/lab3/lab3.m
+index d817282..8c3f7c0 100644
+--- a/labs/lab3/lab3.m
++++ b/labs/lab3/lab3.m
+@@ -1,11 +1,17 @@
+ %% Lab 3
+ 
+-the_root = 1
+-six_digits_of_accuracy =.5E-6;
++lib = make_lib();
++
+ %% Problem 1
+ %%
++disp(sprintf('Table:'));
++disp(sprintf('Initial Interval \t Approximation \t \t Error'));
++x0 = 0.0;
++x1 = 1.0;
++[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,10);
++disp(sprintf('%g to %g \t\t\t %0.10f \t\t %0.10f', x0, x1, root, lib.the_root - root));
+ 
+-k = 1;
+-while abs(eq1(reqx, k) - xtrue) > six_digits_of_accuracy
+-    k = k + 1;
+-end
++x0 = 0.2;
++x1 = 2.0;
++[it_count, root, xn] = bisect(lib.f,x0,x1,lib.accuracy,10);
++disp(sprintf('%g to %g \t\t\t %0.10f \t\t %0.10f', x0, x1, root, lib.the_root - root));
+diff --git a/labs/lab3/make_lib.m b/labs/lab3/make_lib.m
+index d3a3511..7cc94fd 100644
+--- a/labs/lab3/make_lib.m
++++ b/labs/lab3/make_lib.m
+@@ -1,9 +1,5 @@
+ function lib = make_lib()
+-    lib.f = @the_function;
++    lib.f = '(x ^ 5) - (x ^ 4) + x - 1';
+     lib.the_root = 1;
+     lib.accuracy = 5E-6;
+ end
+-
+-function y = the_function(x)
+-    (x ^ 5) - (x ^ 4) + x - 1;
+-end
+-- 
+1.7.11.3
+

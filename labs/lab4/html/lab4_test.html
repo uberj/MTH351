@@ -1,0 +1,563 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>lab4_test</title><meta name="generator" content="MATLAB 7.13"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2012-11-07"><meta name="DC.source" content="lab4_test.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">% Name: Eric Zounes</span>
+<span class="comment">% Date: 11/04/12</span>
+<span class="comment">% Lab 4</span>
+
+<span class="comment">% 1.</span>
+N = 10;
+x = linspace(-5,5,N+1);
+f = inline(<span class="string">'1./(1+x.*x)'</span>, <span class="string">'x'</span>);
+y = f(x)
+figure
+plot(x,y,<span class="string">'o'</span>)
+title(<span class="string">'N+1 = 11 equally-spaced data points'</span>)
+t = [-5:.1:5];
+figure
+plot(t,f(t),<span class="string">'-'</span>)
+title(<span class="string">'Runge function'</span>)
+
+<span class="comment">% 2.</span>
+
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf)
+
+figure
+plot(x,y,<span class="string">'o'</span>,t,f(t),<span class="string">'-'</span>,t,v,<span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P_{10}(t), err%g'</span>, err))
+
+<span class="comment">% 3. Interpolation at Chebychev nodes:</span>
+
+<span class="comment">% From the following Chebychev interpolation, we can see that it performs much</span>
+<span class="comment">% better than equally spaced nodes. The equally spaced nodes from polyfit</span>
+<span class="comment">% create polynomial which has a large degree of error when interpolating</span>
+<span class="comment">% points near each end of the interval. We call this Runge's phenomenon.</span>
+<span class="comment">% We expect that as we increase N, Chebychev should outperform polyfit.</span>
+
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+<span class="keyword">for</span> i = 1:K
+xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
+<span class="keyword">end</span>
+ycheb = f(xcheb);
+
+PNcheb = polyfit(xcheb, ycheb, K-1);
+vcheb = polyval(PNcheb, t)
+cheberr = norm(f(t)-vcheb,inf)
+
+figure
+plot(xcheb,ycheb, <span class="string">'o'</span>, t, f(t), <span class="string">'-'</span>, t, vcheb, <span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P_{11}(t), cheb err %g'</span>, cheberr))
+<span class="comment">% 4. Repeat 1, 2, and 3 with N = 20 and N = 50. Explain what behavior you i</span>
+<span class="comment">% observe.</span>
+
+<span class="comment">% From the following graphs we can see that Chebyshev outperforms the</span>
+<span class="comment">% standard polynomial interpolation for all N. The Chebychev equation is a</span>
+<span class="comment">% type of affine transformation which helps reduce the amount of error</span>
+<span class="comment">% introduced at the end points.</span>
+
+<span class="comment">% N = 20.</span>
+N = 20;
+x = linspace(-5,5,N+1);
+f = inline(<span class="string">'1./(1+x.*x)'</span>, <span class="string">'x'</span>);
+y = f(x)
+figure
+plot(x,y,<span class="string">'o'</span>)
+title(<span class="string">'N+1 = 21 equally-spaced data points'</span>)
+t = [-5:.1:5];
+
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf)
+
+figure
+plot(x,y,<span class="string">'o'</span>,t,f(t),<span class="string">'-'</span>,t,v,<span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P_{20}(t), err%g'</span>, err))
+
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+<span class="keyword">for</span> i = 1:K
+xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
+<span class="keyword">end</span>
+ycheb = f(xcheb);
+PNcheb = polyfit(xcheb, ycheb, K-1);
+vcheb = polyval(PNcheb, t)
+cheberr = norm(f(t)-vcheb,inf)
+
+figure
+plot(xcheb,ycheb,<span class="string">'o'</span>, t, f(t), <span class="string">'-'</span>, t, vcheb, <span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P_{21}(t), cheb err %g'</span>, cheberr))
+
+<span class="comment">% N = 50</span>
+
+N = 50;
+x = linspace(-5,5,N+1);
+f = inline(<span class="string">'1./(1+x.*x)'</span>, <span class="string">'x'</span>);
+y = f(x)
+figure
+plot(x,y,<span class="string">'o'</span>)
+title(<span class="string">'N+1 = 51 equally-spaced data points'</span>)
+t = [-5:.1:5];
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf)
+
+figure
+plot(x,y,<span class="string">'o'</span>,t,f(t),<span class="string">'-'</span>,t,v,<span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P_{50}(t), err%g'</span>, err))
+
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+<span class="keyword">for</span> i = 1:K
+xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
+<span class="keyword">end</span>
+ycheb = f(xcheb);
+
+PNcheb = polyfit(xcheb, ycheb, K-1);
+vcheb = polyval(PNcheb, t)
+cheberr = norm(f(t)-vcheb,inf)
+
+figure
+plot(xcheb,ycheb,<span class="string">'o'</span>, t, f(t), <span class="string">'-'</span>, t, vcheb, <span class="string">'--'</span>)
+title(sprintf(<span class="string">'f(t) and P_{51}(t), cheb err %g'</span>, cheberr))
+</pre><pre class="codeoutput">
+y =
+
+  Columns 1 through 10
+
+    0.0385    0.0588    0.1000    0.2000    0.5000    1.0000    0.5000    0.2000    0.1000    0.0588
+
+  Column 11
+
+    0.0385
+
+
+err =
+
+    1.9156
+
+
+vcheb =
+
+  Columns 1 through 10
+
+   -0.0053    0.0664    0.0871    0.0791    0.0583    0.0352    0.0162    0.0049    0.0024    0.0083
+
+  Columns 11 through 20
+
+    0.0213    0.0395    0.0608    0.0829    0.1040    0.1224    0.1371    0.1471    0.1523    0.1527
+
+  Columns 21 through 30
+
+    0.1488    0.1413    0.1313    0.1200    0.1087    0.0987    0.0913    0.0878    0.0893    0.0966
+
+  Columns 31 through 40
+
+    0.1105    0.1314    0.1596    0.1949    0.2372    0.2858    0.3400    0.3988    0.4611    0.5256
+
+  Columns 41 through 50
+
+    0.5910    0.6559    0.7187    0.7781    0.8327    0.8812    0.9226    0.9559    0.9802    0.9950
+
+  Columns 51 through 60
+
+    1.0000    0.9950    0.9802    0.9559    0.9226    0.8812    0.8327    0.7781    0.7187    0.6559
+
+  Columns 61 through 70
+
+    0.5910    0.5256    0.4611    0.3988    0.3400    0.2858    0.2372    0.1949    0.1596    0.1314
+
+  Columns 71 through 80
+
+    0.1105    0.0966    0.0893    0.0878    0.0913    0.0987    0.1087    0.1200    0.1313    0.1413
+
+  Columns 81 through 90
+
+    0.1488    0.1527    0.1523    0.1471    0.1371    0.1224    0.1040    0.0829    0.0608    0.0395
+
+  Columns 91 through 100
+
+    0.0213    0.0083    0.0024    0.0049    0.0162    0.0352    0.0583    0.0791    0.0871    0.0664
+
+  Column 101
+
+   -0.0053
+
+
+cheberr =
+
+    0.1089
+
+
+y =
+
+  Columns 1 through 10
+
+    0.0385    0.0471    0.0588    0.0755    0.1000    0.1379    0.2000    0.3077    0.5000    0.8000
+
+  Columns 11 through 20
+
+    1.0000    0.8000    0.5000    0.3077    0.2000    0.1379    0.1000    0.0755    0.0588    0.0471
+
+  Column 21
+
+    0.0385
+
+Warning: Polynomial is badly conditioned. Add points with distinct X
+         values, reduce the degree of the polynomial, or try centering
+         and scaling as described in HELP POLYFIT. 
+
+err =
+
+   58.2781
+
+Warning: Polynomial is badly conditioned. Add points with distinct X
+         values, reduce the degree of the polynomial, or try centering
+         and scaling as described in HELP POLYFIT. 
+
+vcheb =
+
+  Columns 1 through 10
+
+    0.0444    0.0371    0.0474    0.0465    0.0415    0.0405    0.0453    0.0530    0.0597    0.0631
+
+  Columns 11 through 20
+
+    0.0631    0.0612    0.0598    0.0605    0.0643    0.0710    0.0797    0.0887    0.0969    0.1032
+
+  Columns 21 through 30
+
+    0.1075    0.1102    0.1123    0.1151    0.1197    0.1273    0.1382    0.1525    0.1696    0.1886
+
+  Columns 31 through 40
+
+    0.2087    0.2289    0.2488    0.2684    0.2882    0.3093    0.3332    0.3615    0.3957    0.4372
+
+  Columns 41 through 50
+
+    0.4864    0.5431    0.6063    0.6739    0.7431    0.8106    0.8726    0.9255    0.9660    0.9913
+
+  Columns 51 through 60
+
+    1.0000    0.9913    0.9660    0.9255    0.8726    0.8106    0.7431    0.6739    0.6063    0.5431
+
+  Columns 61 through 70
+
+    0.4864    0.4372    0.3957    0.3615    0.3332    0.3093    0.2882    0.2684    0.2488    0.2289
+
+  Columns 71 through 80
+
+    0.2087    0.1886    0.1696    0.1525    0.1382    0.1273    0.1197    0.1151    0.1123    0.1102
+
+  Columns 81 through 90
+
+    0.1075    0.1032    0.0969    0.0887    0.0797    0.0710    0.0643    0.0605    0.0598    0.0612
+
+  Columns 91 through 100
+
+    0.0631    0.0631    0.0597    0.0530    0.0453    0.0405    0.0415    0.0465    0.0474    0.0371
+
+  Column 101
+
+    0.0444
+
+
+cheberr =
+
+    0.0153
+
+
+y =
+
+  Columns 1 through 10
+
+    0.0385    0.0416    0.0451    0.0491    0.0536    0.0588    0.0648    0.0716    0.0796    0.0890
+
+  Columns 11 through 20
+
+    0.1000    0.1131    0.1289    0.1479    0.1712    0.2000    0.2358    0.2809    0.3378    0.4098
+
+  Columns 21 through 30
+
+    0.5000    0.6098    0.7353    0.8621    0.9615    1.0000    0.9615    0.8621    0.7353    0.6098
+
+  Columns 31 through 40
+
+    0.5000    0.4098    0.3378    0.2809    0.2358    0.2000    0.1712    0.1479    0.1289    0.1131
+
+  Columns 41 through 50
+
+    0.1000    0.0890    0.0796    0.0716    0.0648    0.0588    0.0536    0.0491    0.0451    0.0416
+
+  Column 51
+
+    0.0385
+
+Warning: Polynomial is badly conditioned. Add points with distinct X
+         values, reduce the degree of the polynomial, or try centering
+         and scaling as described in HELP POLYFIT. 
+
+err =
+
+   2.4738e+06
+
+Warning: Polynomial is badly conditioned. Add points with distinct X
+         values, reduce the degree of the polynomial, or try centering
+         and scaling as described in HELP POLYFIT. 
+
+vcheb =
+
+  Columns 1 through 10
+
+    0.0418    0.0398    0.0417    0.0423    0.0449    0.0472    0.0490    0.0514    0.0537    0.0561
+
+  Columns 11 through 20
+
+    0.0588    0.0618    0.0648    0.0680    0.0716    0.0755    0.0796    0.0841    0.0889    0.0943
+
+  Columns 21 through 30
+
+    0.1001    0.1063    0.1131    0.1206    0.1289    0.1380    0.1479    0.1589    0.1712    0.1848
+
+  Columns 31 through 40
+
+    0.2000    0.2170    0.2358    0.2570    0.2809    0.3077    0.3379    0.3718    0.4098    0.4524
+
+  Columns 41 through 50
+
+    0.5000    0.5525    0.6098    0.6712    0.7353    0.8000    0.8620    0.9174    0.9616    0.9901
+
+  Columns 51 through 60
+
+    1.0000    0.9901    0.9615    0.9174    0.8621    0.8000    0.7353    0.6712    0.6098    0.5525
+
+  Columns 61 through 70
+
+    0.5000    0.4525    0.4098    0.3718    0.3379    0.3077    0.2809    0.2570    0.2358    0.2170
+
+  Columns 71 through 80
+
+    0.2000    0.1848    0.1712    0.1590    0.1479    0.1380    0.1289    0.1206    0.1131    0.1063
+
+  Columns 81 through 90
+
+    0.1000    0.0943    0.0889    0.0841    0.0796    0.0755    0.0716    0.0680    0.0648    0.0617
+
+  Columns 91 through 100
+
+    0.0588    0.0561    0.0537    0.0514    0.0490    0.0471    0.0450    0.0428    0.0419    0.0388
+
+  Column 101
+
+    0.0325
+
+
+cheberr =
+
+    0.0059
+
+</pre><img vspace="5" hspace="5" src="lab4_test_01.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_02.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_03.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_04.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_05.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_06.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_07.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_08.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_09.png" alt=""> <img vspace="5" hspace="5" src="lab4_test_10.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.13<br></p></div><!--
+##### SOURCE BEGIN #####
+% Name: Eric Zounes
+% Date: 11/04/12
+% Lab 4
+ 
+% 1.
+N = 10;
+x = linspace(-5,5,N+1);
+f = inline('1./(1+x.*x)', 'x');
+y = f(x)
+figure
+plot(x,y,'o')
+title('N+1 = 11 equally-spaced data points')
+t = [-5:.1:5];
+figure
+plot(t,f(t),'-')
+title('Runge function')
+
+% 2.
+
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf)
+
+figure
+plot(x,y,'o',t,f(t),'-',t,v,'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P_{10}(t), err%g', err))
+
+% 3. Interpolation at Chebychev nodes:
+
+% From the following Chebychev interpolation, we can see that it performs much
+% better than equally spaced nodes. The equally spaced nodes from polyfit
+% create polynomial which has a large degree of error when interpolating
+% points near each end of the interval. We call this Runge's phenomenon.
+% We expect that as we increase N, Chebychev should outperform polyfit.
+
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+for i = 1:K
+xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
+end
+ycheb = f(xcheb);
+
+PNcheb = polyfit(xcheb, ycheb, K-1);
+vcheb = polyval(PNcheb, t)
+cheberr = norm(f(t)-vcheb,inf)
+
+figure
+plot(xcheb,ycheb, 'o', t, f(t), '-', t, vcheb, 'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P_{11}(t), cheb err %g', cheberr))
+% 4. Repeat 1, 2, and 3 with N = 20 and N = 50. Explain what behavior you i
+% observe.
+
+% From the following graphs we can see that Chebyshev outperforms the
+% standard polynomial interpolation for all N. The Chebychev equation is a
+% type of affine transformation which helps reduce the amount of error
+% introduced at the end points.
+
+% N = 20.
+N = 20;
+x = linspace(-5,5,N+1);
+f = inline('1./(1+x.*x)', 'x');
+y = f(x)
+figure
+plot(x,y,'o')
+title('N+1 = 21 equally-spaced data points')
+t = [-5:.1:5];
+
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf)
+
+figure
+plot(x,y,'o',t,f(t),'-',t,v,'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P_{20}(t), err%g', err))
+
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+for i = 1:K
+xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
+end
+ycheb = f(xcheb);
+PNcheb = polyfit(xcheb, ycheb, K-1);
+vcheb = polyval(PNcheb, t)
+cheberr = norm(f(t)-vcheb,inf)
+
+figure
+plot(xcheb,ycheb,'o', t, f(t), '-', t, vcheb, 'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P_{21}(t), cheb err %g', cheberr))
+
+% N = 50
+
+N = 50;
+x = linspace(-5,5,N+1);
+f = inline('1./(1+x.*x)', 'x');
+y = f(x)
+figure
+plot(x,y,'o')
+title('N+1 = 51 equally-spaced data points')
+t = [-5:.1:5];
+PN = polyfit(x,y,N);
+v = polyval(PN,t);
+err = norm(f(t)-v,inf)
+
+figure
+plot(x,y,'o',t,f(t),'-',t,v,'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P_{50}(t), err%g', err))
+
+K = N+1;
+a = -5;
+b = 5;
+xcheb = zeros(1,K);
+for i = 1:K
+xcheb(i) = (a+b)/2 + (b-a)/2 * cos( (i-.5)*pi/K);
+end
+ycheb = f(xcheb);
+
+PNcheb = polyfit(xcheb, ycheb, K-1);
+vcheb = polyval(PNcheb, t)
+cheberr = norm(f(t)-vcheb,inf)
+
+figure
+plot(xcheb,ycheb,'o', t, f(t), '-', t, vcheb, 'REPLACE_WITH_DASH_DASH')
+title(sprintf('f(t) and P_{51}(t), cheb err %g', cheberr))
+
+
+
+
+##### SOURCE END #####
+--></body></html>
