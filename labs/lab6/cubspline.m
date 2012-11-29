@@ -1,4 +1,4 @@
-function [res,time,itnum]=cubspline(n, sol_method)
+function [res,time,itnum]=cubspline(n, sol_method, do_plot)
 % n = number of data points (xj,yj)
 
   itnum=1; % count number of iterations
@@ -81,11 +81,12 @@ function [res,time,itnum]=cubspline(n, sol_method)
   
   
   % plot data and cubic spline approximation
-  %figure
-  %plot(xj,yj,'o')
-  %hold on
-  %plot(t,y)
-  %plot(t,st,'--')
-  %title(sprintf(['Natural cubic spline approximation of %d degree', ...
-%		 'Legendre polynomial with %d nodes'],m,n));
-
+  if do_plot
+      figure
+      plot(xj,yj,'o')
+      hold on
+      plot(t,y)
+      plot(t,st,'--')
+      title(sprintf(['Natural cubic spline approximation of %d degree', ...
+             'Legendre polynomial with %d nodes using %s'],m,n,sol_method));
+  end

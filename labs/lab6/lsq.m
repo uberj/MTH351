@@ -28,16 +28,16 @@ function [res,time,maxerr]=lsq(m)
   % plot solution:
   t=[0:.01:1];
   y=polyval(flipud(x),t);
-  figure
-  plot(t,y,'--')
-  hold on
-  plot(t,f(t))
-  title(sprintf('Degree %d Least squares approximation to %s',m,fcn))
+  %figure
+  %plot(t,y,'--')
+  %hold on
+  %plot(t,f(t))
+  %title(sprintf('Degree %d Least squares approximation to %s',m,fcn))
   
   % plot error in solution:
-  figure
-  plot(t,y-f(t))
-  title(sprintf('Error in degree %d Least squares approximation to %s',m,fcn))
+  %figure
+  %plot(t,y-f(t))
+  %title(sprintf('Error in degree %d Least squares approximation to %s',m,fcn))
 
   maxerr=max(abs(y-f(t)));
 
