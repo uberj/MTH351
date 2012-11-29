@@ -1,4 +1,4 @@
-function [res,time,itnum]=cubspline(n)
+function [res,time,itnum]=cubspline(n, sol_method)
 % n = number of data points (xj,yj)
 
   itnum=1; % count number of iterations
@@ -26,7 +26,20 @@ function [res,time,itnum]=cubspline(n)
   tic % for timing
   
   % solve system using Gaussian elimination and backsubstitution
-  [M,lu,piv] = GEpivot(A,b);
+  %sprintf('___Using *%s* to solve tridiagonal system corresponding to natural cubic spline interpolation\n', sol_method)
+  switch sol_method
+    case 'GEpivot'
+        [M,lu,piv] = GEpivot(A,b);
+    case 'Jacobi'
+        [M, iflag, itnum] = Jacobi(A,b,b,eps,100000);
+    case 'GS'
+        [M, iflag, itnum] = GS(A,b,b,eps,100000);
+    case 'CG'
+        [M, iflag, itnum] = CG(A,b,b,eps,100000);
+    case 'triadag'
+        [M, alpha, beta, ier] = tridiag(ld,di,ud,b,n-2,0);
+  end
+
   
   % alternatively, solve system using an iterative method
   % (be sure to comment out GEpivot above when uncommenting one of these) 
@@ -68,11 +81,11 @@ function [res,time,itnum]=cubspline(n)
   
   
   % plot data and cubic spline approximation
-  figure
-  plot(xj,yj,'o')
-  hold on
-  plot(t,y)
-  plot(t,st,'--')
-  title(sprintf(['Natural cubic spline approximation of %d degree', ...
-		 'Legendre polynomial with %d nodes'],m,n));
+  %figure
+  %plot(xj,yj,'o')
+  %hold on
+  %plot(t,y)
+  %plot(t,st,'--')
+  %title(sprintf(['Natural cubic spline approximation of %d degree', ...
+%		 'Legendre polynomial with %d nodes'],m,n));
 

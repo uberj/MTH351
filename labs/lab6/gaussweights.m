@@ -1,4 +1,4 @@
-function compweights=gaussweights(n)
+function [compweights, A]=gaussweights(n)
 % n = number of nodes used in the quadrature rule
   
   % setup right hand side: int(x^i,x=-1..1)
