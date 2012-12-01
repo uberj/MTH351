@@ -1,5 +1,6 @@
 %% Lab 6
-
+fprintf(['asdf ' ...
+    'asdf'])
 %% Problem 1
 %% 
 
@@ -49,7 +50,7 @@ end
 %%
 % 1.f
 % No, you cannot use Jacobi iteration because the norm of a hilbert
-% matrix is always greater than zero. For the Jacobi method (whic is
+% matrix is always greater than zero. For the Jacobi method (which is
 % basically fixed point iteration) to work, g' or M needs to be less
 % than 1.
 
@@ -81,7 +82,8 @@ for i=1:length(Ns),
     N_J=diag(diag(A));
     P_J=N_J-A;
     J_norm = norm(inv(N_J)*P_J);
-    fprintf('==============\nn = %d\t\ncondition number = %0.5e\nJacobi norm = %0.5e\nGauss-seidel norm = %0.5e', n, cond(A, inf), J_norm, GS_norm )
+    fprintf(['==============\nn = %d\t\ncondition number = %0.5e\nJacobi' ...
+     'norm = %0.5e\nGauss-seidel norm = %0.5e'], n, cond(A, inf), J_norm, GS_norm )
     compweights
     fprintf('\n')
 end
@@ -96,13 +98,14 @@ end
 % The condition values for n = 32 and n = 64 are relativly very large
 % compared to when n is equal to 8, 4, and 2. Specifically, when n =
 % 32 the condition number is 1282671494874.59 and when n = 64 K is
-% 48500196769728348160. The plots of the wights is very chaotic, the
-% high condition numbers would explain this behavior.
+% 48500196769728348160. The high condition numbers mean the matrixs
+% are ill-conditioned which mean there will be a lot of error when
+% solving them.
 
 %%
 % 2.c and 2.d
 % Jacobi and Gauss-Seidel can be applied but only when the norm of the
-% matrix is less than 1.
+% matrix is strictly less than 1.
 
 %% Problem 3
 %%
@@ -133,7 +136,8 @@ methods = {'GEpivot', 'Jacobi', 'GS', 'CG', 'triadag'};
 for m=1:length(methods),
     method = methods{m};
 
-    sprintf('Using *%s* to solve tridiagonal system corresponding to natural cubic spline interpolation\n', method)
+    sprintf(['Using *%s* to solve tridiagonal system corresponding to' ...
+        'natural cubic spline interpolation\n'], method)
     for i=1:length(Ns),
         n = Ns(i);
         time_e = 0;
@@ -141,7 +145,8 @@ for m=1:length(methods),
             [res,tme,itnum] = cubspline(n, method, 0);
             time_e = time_e + tme;
         end
-        fprintf('n = %d\titerations = %d\t Average run time over 50 runs:%0.5e\t\n', n, itnum, time_e/50.0);
+        fprintf(['n = %d\titerations = %d\t Average run time over 50' ...
+            'runs:%0.5e\t\n'], n, itnum, time_e/50.0);
     end
 end
 
