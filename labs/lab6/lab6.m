@@ -81,7 +81,7 @@ for i=1:length(Ns),
     N_J=diag(diag(A));
     P_J=N_J-A;
     J_norm = norm(inv(N_J)*P_J);
-    fprintf('==============\nn = %d\t\ncondition number = %0.12f\nJacobi norm = %0.12f\nGauss-seidel norm = %0.12f', n, cond(A, inf), J_norm, GS_norm )
+    fprintf('==============\nn = %d\t\ncondition number = %0.5e\nJacobi norm = %0.5e\nGauss-seidel norm = %0.5e', n, cond(A, inf), J_norm, GS_norm )
     compweights
     fprintf('\n')
 end
